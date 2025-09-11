@@ -97,7 +97,7 @@ will have to go back and investigate this.
 <br>
 <br>
 <br>
-Code to get workspace started (ALL ON HPC)
+**Code to get workspace started (ALL ON HPC)**
 
 ~/BIOCOMPUTING ]$mkdir -p ~/BIOCOMPUTING/assignments/assignment_2/data
 
@@ -159,7 +159,7 @@ After doing this, you may fix the identity used for this commit with:
 <br>
 <br>
 <br>
-Rest of Code Used (Everything was HPC except for aliases and md5 hashes which were done on local)
+**Rest of Code Used (Everything was HPC except for aliases and md5 hashes which were done on local)**
 
 git clone https://github.com/verapande/BIOCOMPUTING.git BIOCOMPUTING_new
 
