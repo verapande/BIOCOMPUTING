@@ -48,3 +48,25 @@ group | and others with the first digit being owner permissions, second digit be
 and 1=execute. Thus the usage of 644. I then really quickly did ls -l to
 check permissions was able to confirm that the files are now accessible by
 everyone (they can read).
+
+<br>
+<br>
+<br>
+
+For Task 4,
+<br>
+On Local Machine:
+<br>
+MD5 hash for fna file: e1b894042b53655594a1623a7e0bb63f
+<br>
+MD5 hash for gff file: 494dc5999874e584134da5818ffac925
+<br>
+On the HPC:
+<br>
+MD5 hash for fna file: e1b894042b53655594a1623a7e0bb63f
+<br>
+MD5 hash for gff file: 494dc5999874e584134da5818ffac925
+<br>
+<br>
+Am visually confirming that these hashes match so fortunately no corruption
+of data here.
