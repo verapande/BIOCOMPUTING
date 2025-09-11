@@ -248,3 +248,15 @@ nano README.md
 git add README.md
 git commit -m “Cleaning up README file”
 git push origin main
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+**REFLECTION**
+This assignment was definitely a little challenging, and I know it will take some practice to get more comfortable with these commands. Some commands did not work on my MacBook, so I had to do extra research to figure out the correct alternatives, which slowed me down. I also struggled for a long time to properly clone my Git repository on the HPC, but after troubleshooting and using online resources I was finally able to get it working. For now, I kept the underscore2  notation in my folder names, but I plan to go back later and clean up the extra assignment_02 folder. Overall, most things worked once I figured them out, though I found myself  repeating steps a lot before realizing what I was doing wrong.
