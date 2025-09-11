@@ -87,3 +87,164 @@ from your current working directory. Alias d just essentially goes one level
 further down from your current working directory and prints the path. Alias
 ll is not working for some reason and is printing out incomprehensible info;
 will have to go back and investigate this.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+Code to get workspace started (ALL ON HPC)
+
+~/BIOCOMPUTING ]$mkdir -p ~/BIOCOMPUTING/assignments/assignment_2/data
+
+~/BIOCOMPUTING ]$touch ~/BIOCOMPUTING/assignments/assignment_2/README.md
+
+ ~/BIOCOMPUTING ]$git add assignments assignment_2/data assignments/assignment_2/README.md
+fatal: not a git repository (or any parent up to mount point /sciclone)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+
+~/BIOCOMPUTING ]$ cd ~
+~ ]$mv ~/BIOCOMPUTING ~/BIOCOMPUTING_backup_$(date +%Y%m%d_%H%M%S) 2>/dev/null || true
+
+$git clone https://github.com/verapande/BIOCOMPUTING.git ~/BIOCOMPUTING
+Cloning into '/sciclone/home/vpande/BIOCOMPUTING'...
+remote: Enumerating objects: 63, done.
+remote: Counting objects: 100% (63/63), done.
+remote: Compressing objects: 100% (34/34), done.
+remote: Total 63 (delta 22), reused 45 (delta 12), pack-reused 0 (from 0)
+Receiving objects: 100% (63/63), 11.50 KiB | 3.83 MiB/s, done.
+Resolving deltas: 100% (22/22), done.
+
+ cd ~/BIOCOMPUTING
+~/BIOCOMPUTING ]$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+~/BIOCOMPUTING ]$ git remote -v
+origin	https://github.com/verapande/BIOCOMPUTING.git (fetch)
+origin	https://github.com/verapande/BIOCOMPUTING.git (push)
+
+~/BIOCOMPUTING ]$ mkdir -p assignments/assignment_2/data
+
+ ~/BIOCOMPUTING ]$ touch assignments/assignment_2/README.md
+
+ ~/BIOCOMPUTING ]$ git add assignments/assignment_2
+
+~/BIOCOMPUTING ]$ git commit -m "Add assignment_2 with data folder and README file"
+[main 49514d5] Add assignment_2 with data folder and README file
+ Committer: Vera Pande--vpande@wm.edu--vpande---Geoffrey Zahn [gzahn@wm.edu] <vpande@bora.sciclone.wm.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 assignments/assignment_2/README.md
+[21 vpande@bora ~/BIOCOMPUTING ]$ git push origin main
+<br>
+<br>
+<br>
+<br>
+<br>
+Rest of Code Used (Everything was HPC except for aliases and md5 hashes which were done on local)
+
+git clone https://github.com/verapande/BIOCOMPUTING.git BIOCOMPUTING_new
+
+
+
+gftp -p ftp.ncbi.nlm.nih.gov
+Name (ftp.ncbi.nlm.nih.gov:vera): anonymous
+331 Anonymous login ok, send your complete email address as your password
+Password: 
+230 Anonymous access granted, restrictions apply
+
+
+get GCF_000005845.2_ASM584v2_genomic.fna.gz
+get GCF_000005845.2_ASM584v2_genomic.gff.gz
+
+bye
+
+
+
+
+
+sftp vpande@bora.sciclone.wm.edu
+ 
+cd BIOCOMPUTING
+ 
+cd assignments/assignment_2/data
+
+cd /sciclone/home/vpande/BIOCOMPUTING/assignments/assignment_2/data/
+
+pwd
+
+put /Users/vera/GCF_000005845.2_ASM584v2_genomic.fna.gz
+put /Users/vera/GCF_000005845.2_ASM584v2_genomic.gff.gz
+
+
+
+
+chmod 644 *.gz
+
+
+
+
+
+cd ~/BIOCOMPUTING/assignments/assignment_2/
+ls
+git add README.md
+git commit -m "Add README for assignment 2"
+git push origin main
+nano README.md
+git add README.md
+git commit -m "Add README for assignment 2"
+git push origin main
+
+
+
+
+md5 GCF_000005845.2_ASM584v2_genomic.fna.gz
+md5 GCF_000005845.2_ASM584v2_genomic.gff.gz
+md5sum GCF_000005845.2_ASM584v2_genomic.fna.gz
+md5sum data/GCF_000005845.2_ASM584v2_genomic.gff.gz
+
+
+
+
+nano ~/.bashrc
+source ~/.bashrc
+u
+d 
+clear
+ll
+
+
+
+
+
+
+nano README.md
+git add README.md
+git commit -m "Add README for assignment 2"
+git push origin main
+nano README.md
+git add README.md
+git commit -m "Add README for assignment 2"
+git push origin main
+nano README.md
+git add README.md
+git commit -m “Cleaning up README file”
+git push origin main
