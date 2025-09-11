@@ -1,3 +1,8 @@
+Vera Pande, 09/11/2025, Assignment #2
+<br>
+<br>
+<br>
+
 For Task 2, to download files from NCBI via command-line FTP, I first
 installed inetutils via homebrew to provide the ftp client for Mac because
 I am on a Mac.
