@@ -70,3 +70,15 @@ MD5 hash for gff file: 494dc5999874e584134da5818ffac925
 <br>
 Am visually confirming that these hashes match so fortunately no corruption
 of data here.
+<br>
+<br>
+<br>
+<br>
+<br>
+For Task 5,
+<br>
+Alias u just essentially clears your terminal screen and goes one level up
+from your current working directory. Alias d just essentially goes one level 
+further down from your current working directory and prints the path. Alias
+ll is not working for some reason and is printing out incomprehensible info;
+will have to go back and investigate this.
