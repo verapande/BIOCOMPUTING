@@ -82,3 +82,13 @@ Tracking "*.fna"
 <br>
 <br>
 Then wrote nano.README.md to start documenting here.
+<br>
+<br>
+<br>
+<br>
+<br>
+To manually develop and run a series of commands to do the 10 exercises for Assignment_3
+<br>
+For #1, wrote command line: [63 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$ grep '^>' GCF_000001735.4_TAIR10.1_genomic.fna | wc -l
+<br>
+For #2, wrote command line: [65 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$grep -v '^>' GCF_000001735.4_TAIR10.1_genomic.fna | tr -d '\n' | wc -c
