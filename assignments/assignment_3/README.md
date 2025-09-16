@@ -48,6 +48,33 @@ Password for 'https://verapande@github.com':
 Everything up-to-date
 <br>
 <br>
-Was getting so close to having everything pushed to the repository but then the system continuously was rejecting the genomic fasta sequence file because apparently it was a large file. Had to do a quick google search to figure out how to troubleshoot this and figured that I needed to undo my last commit (all command lines not shown here) but keep all of the changes staged, then I needed to set up Git Large File Storage (a helpful extension for processing large data files), then tell git lfs to manage any file ending in .fna (because the file that I was specifically working with is a fna file), and then re-add everything, save changes, and upload. 
+Was getting so close to having everything pushed to the repository but then the system continuously was rejecting the genomic fasta sequence file because apparently it was a large file. Had to do a quick google search to figure out how to troubleshoot this and figured that I needed to undo my last commit (all command lines not shown here) but keep all of the changes staged, then I needed to set up Git Large File Storage (a helpful extension for processing large data files), then tell git lfs to manage any file ending in .fna (because the file that I was specifically working with is a fna file), and then re-add everything, save changes, and upload. I wrote the following command lines:
+<br>
+remote: error: File assignments/assignment_3/data/GCF_000001735.4_TAIR10.1_genomic.fna is 114.13 MB; this exceeds GitHub's file size limit of 100.00 MB
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+To https://github.com/verapande/BIOCOMPUTING.git
+ ! [remote rejected] main -> main (pre-receive hook declined)
+error: failed to push some refs to 'https://github.com/verapande/BIOCOMPUTING.git'
+<br>
+[24 vpande@astral ~/BIOCOMPUTING ]$ git reset --soft HEAD~1
+<br>
+[25 vpande@astral ~/BIOCOMPUTING ]$ git rm --cached assignments/assignment_3/data/GCF_000001735.4_TAIR10.1_genomic.fna
+rm 'assignments/assignment_3/data/GCF_000001735.4_TAIR10.1_genomic.fna'
+<br>
+[26 vpande@astral ~/BIOCOMPUTING ]$ git lfs install
+Updated Git hooks.
+Git LFS initialized.
+<br>
+[27 vpande@astral ~/BIOCOMPUTING ]$ git lfs track "*.fna"
+Tracking "*.fna"
+<br>
+[28 vpande@astral ~/BIOCOMPUTING ]$ git add .gitattributes
+<br>
+[29 vpande@astral ~/BIOCOMPUTING ]$ git add assignments/assignment_3/data/GCF_000001735.4_TAIR10.1_genomic.fna
+<br>
+[30 vpande@astral ~/BIOCOMPUTING ]$ git commit -m "Add assignment_3 and troubleshooting to add large files to github"
+[main 6199477] Add assignment_3 and troubleshooting to add large files to github
+ Committer: Vera Pande--vpande@wm.edu--vpande---Geoffrey Zahn [gzahn@wm.edu] <vpande@astral.sciclone.wm.edu>
+ 
 <br>
 Then wrote nano.README.md to start documenting here.
