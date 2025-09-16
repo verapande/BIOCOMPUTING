@@ -6,8 +6,11 @@ To log into astral cluster I wrote command line ssh vpande@astral.sciclone.wm.ed
 Then to set up assignment_3/ directory I wrote command lines:
 <br>
 [1 vpande@astral ~ ]$ cd ~/BIOCOMPUTING
+<br>
 [2 vpande@astral ~/BIOCOMPUTING ]$ mkdir -p assignments/assignment_3/data
+<br>
 [3 vpande@astral ~/BIOCOMPUTING ]$ touch assignments/assignment_3/README.md
+<br>
 [4 vpande@astral ~/BIOCOMPUTING ]$ ls -la assignments/assignment_3 (this last one to check that indeed directory structure was properly set up)
 <br>
 Then wrote
@@ -25,14 +28,18 @@ On branch main
 <br>
 Your branch is up to date with 'origin/main'.
 Then [15 vpande@astral ~ ]$ cd ~/BIOCOMPUTING
+<br>
 [16 vpande@astral ~/BIOCOMPUTING ]$ git remote -v
 origin	https://github.com/verapande/BIOCOMPUTING.git (fetch)
 origin	https://github.com/verapande/BIOCOMPUTING.git (push)
+<br>
 [17 vpande@astral ~/BIOCOMPUTING ]$git remote set-url origin https://github.com/verapande/BIOCOMPUTING.git
+<br>
 [18 vpande@astral ~/BIOCOMPUTING ]$ git pull origin main
 From https://github.com/verapande/BIOCOMPUTING
  * branch            main       -> FETCH_HEAD
 Already up to date.
+<br>
 [19 vpande@astral ~/BIOCOMPUTING ]$ git push origin main
 Username for 'https://github.com': verapande
 Password for 'https://verapande@github.com': 
