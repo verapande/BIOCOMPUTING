@@ -1,6 +1,8 @@
 Documenting here everything I have run for assignment_3.
 <br>
-To log into astral cluster I wrote command line ssh vpande@astral.sciclone.wm.edu
+To log into astral cluster I wrote command line
+<br>
+ ssh vpande@astral.sciclone.wm.edu
 <br>
 <br>
 Then to set up assignment_3/ directory I wrote command lines:
@@ -44,6 +46,7 @@ Already up to date.
 Username for 'https://github.com': verapande
 Password for 'https://verapande@github.com': 
 Everything up-to-date
+<br>
 <br>
 Was getting so close to having everything pushed to the repository but then the system continuously was rejecting the genomic fasta sequence file because apparently it was a large file. Had to do a quick google search to figure out how to troubleshoot this and figured that I needed to undo my last commit (all command lines not shown here) but keep all of the changes staged, then I needed to set up Git Large File Storage (a helpful extension for processing large data files), then tell git lfs to manage any file ending in .fna (because the file that I was specifically working with is a fna file), and then re-add everything, save changes, and upload. 
 <br>
