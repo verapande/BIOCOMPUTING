@@ -93,3 +93,24 @@ For #1, wrote command line: [63 vpande@astral ~/BIOCOMPUTING/assignments/assignm
 <br>
 <br>
 For #2, wrote command line: [65 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$grep -v '^>' GCF_000001735.4_TAIR10.1_genomic.fna | tr -d '\n' | wc -c
+<br>
+<br>
+For #3, got so confused with this Q. kept returning 14 as total # of lines.
+had to write a few lines in bash for this.
+<br>
+[10 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$
+
+# to get total # of headers
+H=$(grep -c '^>' GCF_000001735.4_TAIR10.1_genomic.fna)
+
+# to get total # of nucleotides again total nucleotides (excluding headers & newlines)
+N=$(grep -v '^>' GCF_000001735.4_TAIR10.1_genomic.fna | tr -d '\n' | wc -c)
+
+# then getting an approximation of total # of lines assuming there are ~80 nucleotides per line (had to look this up)
+width=80
+echo $(( (N + width - 1)/width + H )) (mathematical function)
+
+
+answer: 1495865
+<br>
+<br>
