@@ -152,3 +152,12 @@ For #8, wrote command line: [45 vpande@astral ~/BIOCOMPUTING/assignments/assignm
 <br>
 <br>
 For #9, wrote command line: [50 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$grep '^>' GCF_000001735.4_TAIR10.1_genomic.fna | sort | head -1
+<br>
+<br>
+For #10, I am so lost and confused. The only command line that is working is one
+that CHATGPT is providing which I have typed out below:
+<br>
+awk '/^>/ {if (seq) {print hdr "\t" seq}; hdr=$0; seq=""; next} {seq=seq $0} END {print hdr "\t" seq}' \
+GCF_000001735.4_TAIR10.1_genomic.fna > genome_tab.tsv. I tried it out with 
+a test comand and it is printing out one of the full sequences and its
+repsective header on the same line tab spaced.
