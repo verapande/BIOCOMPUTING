@@ -114,3 +114,41 @@ echo $(( (N + width - 1)/width + H )) (mathematical function)
 answer: 1495865
 <br>
 <br>
+For #4, wrote command line: [29 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$grep -c 'mitochondrion' GCF_000001735.4_TAIR10.1_genomic.fna
+<br>
+<br>
+For #5, wrote command line: [30 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$grep -c 'chromosome' GCF_000001735.4_TAIR10.1_genomic.fna
+<br>
+<br>
+For #6, wrote command line(s): [32 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$( grep -A1 '^>.*chromosome 1' GCF_000001735.4_TAIR10.1_genomic.fna | grep -v '^>' | tr -d '\n' | wc -c ) > c1
+( grep -A1 '^>.*chromosome 2' GCF_000001735.4_TAIR10.1_genomic.fna | grep -v '^>' | tr -d '\n' | wc -c ) > c2
+( grep -A1 '^>.*chromosome 3' GCF_000001735.4_TAIR10.1_genomic.fna | grep -v '^>' | tr -d '\n' | wc -c ) > c3
+paste c1 c2 c3
+30427671	19698289	23459830
+<br>
+In this series of command lines I am essentially finding the FASTA header line
+for chromosomes, removing the header line leaving only the dNA sequence, deleting 
+all newline characters, counting the total # of characters (nucleotides) in
+the chromosome's sequence, and redirecting result for each chromsome 1-3.
+Then pasting to take all three files and combine them side by side via column.
+<br>
+<br>
+For #7, wrote command line(s): [43 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$grep -n '^>' GCF_000001735.4_TAIR10.1_genomic.fna
+1:>NC_003070.9 Arabidopsis thaliana chromosome 1 sequence
+3:>NC_003071.7 Arabidopsis thaliana chromosome 2, partial sequence
+5:>NC_003074.8 Arabidopsis thaliana chromosome 3, partial sequence
+7:>NC_003075.7 Arabidopsis thaliana chromosome 4, partial sequence
+9:>NC_003076.8 Arabidopsis thaliana chromosome 5, partial sequence
+11:>NC_037304.1 Arabidopsis thaliana ecotype Col-0 mitochondrion, complete genome
+13:>NC_000932.1 Arabidopsis thaliana chloroplast, complete genome
+[44 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$head -10 GCF_000001735.4_TAIR10.1_genomic.fna | tail -1 | tr -d '\n' | wc -c
+26975502
+<br>
+Here I am essentially finding out where each sequence starts and then counting
+the number of nucleotides in one particular line.
+<br>
+<br>
+For #8, wrote command line: [45 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$grep -c 'AAAAAAAAAAAAAAAA' GCF_000001735.4_TAIR10.1_genomic.fna
+<br>
+<br>
+For #9, wrote command line: [50 vpande@astral ~/BIOCOMPUTING/assignments/assignment_3/data ]$grep '^>' GCF_000001735.4_TAIR10.1_genomic.fna | sort | head -1
