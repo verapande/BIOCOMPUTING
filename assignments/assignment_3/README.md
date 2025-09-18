@@ -1,5 +1,6 @@
 *Vera Pande, 09/17/2025, Assignment #3*
 <br>
+<br>
 Documenting here everything I have run for assignment_3.
 <br>
 To log into astral cluster I wrote command line
