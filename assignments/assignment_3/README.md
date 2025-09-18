@@ -161,3 +161,30 @@ awk '/^>/ {if (seq) {print hdr "\t" seq}; hdr=$0; seq=""; next} {seq=seq $0} END
 GCF_000001735.4_TAIR10.1_genomic.fna > genome_tab.tsv. I tried it out with 
 a test command and it is printing out one of the full sequences and its
 respective header on the same line tab spaced.
+<br>
+<br>
+<br>
+<br>
+<br>
+REFLECTION:
+Working through this assignment definitely forced my mind to shift into a different
+way of thinking. I learned to see patterns and structures in a piece of biological
+data through the lens of running command lines in the terminal.
+I was surprised by the fact that you could download virtually any file on the internet
+using the wget command and then unzip the file with another command and push it to your
+github. I also got really frustrated with Q10 and had to use the internet to find out
+command lines that correctly make a new tab-separated version of the file where the first
+column is the headers and the second column being the associated sequences. The internet
+suggested the use of functions like awk and sed which I have yet to learn. Yet another frustration
+was trying to do process substitution; it worked on my laptop but wasn't working on the astral
+server. Additional comments are listed under specific command lines further above.
+I think these kinds of skills are essential in computational biology because a lot of biological
+data can come in the form of large large files and can be messy. Whether you are working with genomes,
+transcriptomic data, or clinical data sets, no GUI program is able to handle everything.
+
+Looking forward, I could imagine automating a few of the steps I did manually. We just learned how to 
+write shell scripts so hopefully I could write a shell script to take a FASTA file, count the number
+of sequences, count the number of nucleotides, and produce a clean TSV file with headers and sequences.
+This would be way way into the future, but with a larger skillset maybe I would be able to filter sequencing
+by quality/GC, identify SNPs/indels, ask where exons/promoters/repeats fall, and feed results into Python/R
+for statistics, plots, and other biological intepretation.
