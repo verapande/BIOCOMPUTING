@@ -145,10 +145,12 @@ was what I wrote in the script:
 #!/bin/bash
 FILE=$1
 <br>
-# total sequences = number of headers
+total sequences = number of headers
+<br>
 seqs=$(grep -c '^>' $FILE)
 <br>
-# total nucleotides = everything but headers, no newlines
+total nucleotides = everything but headers, no newlines
+<br>
 nts=$(grep -v '^>' $FILE | tr -d '\n' | wc -c)
 <br>
 echo "FASTA file: $FILE"
@@ -159,10 +161,12 @@ echo "Total number of nucleotides: $nts"
 <br>
 echo "Sequence names and lengths (in a table format):”
 <br>
-# put each header and sequence side by side
+put each header and sequence side by side
+<br>
 seqtk seq -l0 $FILE | paste - - > tmp.tsv
 <br>
-# show header + sequence length by counting characters in column 2
+show header + sequence length by counting characters in column 2
+<br>
 cut -f1 tmp.tsv
 <br>
 cut -f2 tmp.tsv | wc -c
@@ -199,4 +203,3 @@ Another thing was was writing the summarize_fasta.sh script and especially the l
 From this assignment I learned how to install and run programs on the HPC myself, like gh and seqtk, and how to add them to my $PATH. I also learned how to scrape through GitHub looking for the right file to download, instead of relying on admin-only installation methods. I learned what the heck seqtk actually does, and I can already see how it could be very helpful for analyzing genetic sequencing data. I got more practice writing bash scripts and using for-loops to run the same script across multiple files.
 <br>
 $PATH is basically the list of places the shell looks when I type a command. If the folder where a program lives is in $PATH, I can just type the program name from anywhere and it works. That’s why after I added gh and seqtk to my $PATH, I didn’t have to type the full directory path anymore.
-
