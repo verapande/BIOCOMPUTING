@@ -28,7 +28,7 @@ export PATH=$HOME/programs/gh_2.74.2_linux_amd64/bin:$PATH
 <br>
 For Task 6, I ran the command line, gh auth login. Then the terminal led to me to a weird interactive setup and I was able 
 to using my arrow keys and simple enter choose what account I wanted to log into, what my preferred protocol for Git operations
-was (SSH), if I wanted to authenticate Git with my GitHub credentials, and how I would like to authenticate Github CLI which 
+was (HTTPS), if I wanted to authenticate Git with my GitHub credentials, and how I would like to authenticate Github CLI which 
 was obviously pasting an authentication token (easiest). Below is what my output/interface kinda looked like:
 <br>
 Where do you use GitHub? GitHub.com
@@ -145,12 +145,10 @@ was what I wrote in the script:
 #!/bin/bash
 FILE=$1
 <br>
-total sequences = number of headers
-<br>
+# total sequences = number of headers
 seqs=$(grep -c '^>' $FILE)
 <br>
-total nucleotides = everything but headers, no newlines
-<br>
+# total nucleotides = everything but headers, no newlines
 nts=$(grep -v '^>' $FILE | tr -d '\n' | wc -c)
 <br>
 echo "FASTA file: $FILE"
@@ -161,12 +159,10 @@ echo "Total number of nucleotides: $nts"
 <br>
 echo "Sequence names and lengths (in a table format):”
 <br>
-put each header and sequence side by side
-<br>
+# put each header and sequence side by side
 seqtk seq -l0 $FILE | paste - - > tmp.tsv
 <br>
-show header + sequence length by counting characters in column 2
-<br>
+# show header + sequence length by counting characters in column 2
 cut -f1 tmp.tsv
 <br>
 cut -f2 tmp.tsv | wc -c
@@ -203,3 +199,4 @@ Another thing was was writing the summarize_fasta.sh script and especially the l
 From this assignment I learned how to install and run programs on the HPC myself, like gh and seqtk, and how to add them to my $PATH. I also learned how to scrape through GitHub looking for the right file to download, instead of relying on admin-only installation methods. I learned what the heck seqtk actually does, and I can already see how it could be very helpful for analyzing genetic sequencing data. I got more practice writing bash scripts and using for-loops to run the same script across multiple files.
 <br>
 $PATH is basically the list of places the shell looks when I type a command. If the folder where a program lives is in $PATH, I can just type the program name from anywhere and it works. That’s why after I added gh and seqtk to my $PATH, I didn’t have to type the full directory path anymore.
+
