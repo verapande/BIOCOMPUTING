@@ -3,3 +3,4 @@ shell_practice/
 assignments/assignment_4/tmp.tsv
 *.fna
 *.fna
+assignments/assignment_4/summarize_fasta.sh
