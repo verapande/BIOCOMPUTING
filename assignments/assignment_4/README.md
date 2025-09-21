@@ -28,7 +28,7 @@ export PATH=$HOME/programs/gh_2.74.2_linux_amd64/bin:$PATH
 <br>
 For Task 6, I ran the command line, gh auth login. Then the terminal led to me to a weird interactive setup and I was able 
 to using my arrow keys and simple enter choose what account I wanted to log into, what my preferred protocol for Git operations
-was (HTTPS), if I wanted to authenticate Git with my GitHub credentials, and how I would like to authenticate Github CLI which 
+was (SSH), if I wanted to authenticate Git with my GitHub credentials, and how I would like to authenticate Github CLI which 
 was obviously pasting an authentication token (easiest). Below is what my output/interface kinda looked like:
 <br>
 Where do you use GitHub? GitHub.com
