@@ -19,54 +19,33 @@ touch README.md
 <hr>
 
 <h2>Task 2</h2>
-<p>For Task 2, I navigated to my scripts folder and then wrote a new script as specified (01_download_data.sh) and then ran the command to make it executable.</p>
+<p>For Task 2, I navigated to my <code>scripts</code> folder and then wrote a new script as specified (<code>01_download_data.sh</code>) and then ran the command to make it executable.</p>
 
-<pre><code>[11 vpande@astral ~/BIOCOMPUTING/assignments/assignment_5/data ]$ cd ..
-[12 vpande@astral ~/BIOCOMPUTING/assignments/assignment_5 ]$ cd scripts
-[13 vpande@astral ~/BIOCOMPUTING/assignments/assignment_5/scripts ]$
-RESET
-[5 vpande@astral ~/BIOCOMPUTING/assignments/assignment_5 ]$ cd scripts
-[6 vpande@astral ~/BIOCOMPUTING/assignments/assignment_5/scripts ]$ nano 01_download_data.sh
-[8 vpande@astral ~/BIOCOMPUTING/assignments/assignment_5/scripts ]$ chmod +x 01_download_data.sh
+<p><strong>01_download_data.sh</strong></p>
+<pre><code>#!/bin/bash
+
+# Step 1: download the tarball
+wget https://gzahn.github.io/data/fastq_examples.tar
+
+# Step 2: extract the contents
+tar -xvf fastq_examples.tar
+
+# Step 3: move all fastq files into ./data/raw/
+mv *.fastq.gz ./data/raw/
+
+# Step 4: clean up the tarball
+rm -f fastq_examples.tar
 </code></pre>
 
-<p>Within the script specifically this is what I wrote:</p>
-<p><b>Step 1:</b> download the tarball</p>
-<pre><code>wget https://example.com/fastq_examples.tar
+<p><strong>Make it executable &amp; run</strong></p>
+<pre><code>chmod +x ./scripts/01_download_data.sh
+./scripts/01_download_data.sh
 </code></pre>
 
-<p><b>Step 2:</b> extract the contents of the tarball</p>
-<pre><code>tar -xvf fastq_examples.tar
+<p><strong>Quick check</strong></p>
+<pre><code>ls -l ./data/raw | head
 </code></pre>
 
-<p><b>Step 3:</b> move all fastq files into ./data/raw/</p>
-<pre><code>mv .fastq ./data/raw/
-</code></pre>
-
-<p><b>Step 4:</b> clean up the tarball</p>
-<pre><code>rm fastq_examples.tar
-</code></pre>
-
-<p>Then I ran simple ls-l to confirm that the script was existent in the folder and that the executable command went through (file showed up in bold color). Then I navigated to my README.md file in my overall directory and here I am documenting everything.</p>
-
-<pre><code>[9 vpande@astral ~/BIOCOMPUTING/assignments/assignment_5/scripts ]$ ls -l
-total 4 -rwx------. 1 vpande apscu 274 Sep 26 01:07 01_download_data.sh
-[10 vpande@astral ~/BIOCOMPUTING/assignments/assignment_5/scripts ]$ cd ..
-[11 vpande@astral ~/BIOCOMPUTING/assignments/assignment_5 ]$ ls -l
-total 0 drwx------. 4 vpande apscu 44 Sep 25 21:34 data
-drwx------. 2 vpande apscu 10 Sep 25 21:33 log
--rw-------. 1 vpande apscu 0 Sep 25 21:35 README.md
-drwx------. 2 vpande apscu 41 Sep 26 01:07 scripts
-[12 vpande@astral ~/BIOCOMPUTING/assignments/assignment_5 ]$ nano README.md
-</code></pre>
-
-<p>I went ahead and ran the script for Task2, but I got the error <code>mv: cannot stat '.fastq': No such file or directory</code>. The correct files downloaded to my computer but I forgot that none of the files actually end in fastq only fastq.gz. So from the assignment directory I ran the following commands and then went back later and fixed my script to avoid wasting a crazy amount of time.</p>
-
-<pre><code>cd $HOME/BIOCOMPUTING/assignments/assignment_05
-mv scripts/*.fastq.gz data/raw/
-</code></pre>
-
-<hr>
 
 <h2>Task 3</h2>
 <p>For Task 3, I navigated to the fastp GitHub repository and then copied the link to the download of fastp. I then navigated to my programs directory within BIOCOMPUTING on the terminal and then downloaded the fastp program using this:</p>
