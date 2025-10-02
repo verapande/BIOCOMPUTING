@@ -212,3 +212,43 @@ echo "pipeline complete."
 </code></pre>
 
 <p>I pasted what the results look like in a pdf document in my drive that you could read: <a href="https://drive.google.com/file/d/1Xv-MES4SG19zbOyKZ77r8MxqvWZIe7Ym/view?usp=sharing">https://drive.google.com/file/d/1Xv-MES4SG19zbOyKZ77r8MxqvWZIe7Ym/view?usp=sharing</a> to confirm the script did indeed work or if you curious to see the output.</p>
+<br>
+<br>
+<br>
+<h2>Reflection</h2>
+
+<h3>Challenges I had to overcome</h3>
+<ul>
+  <li>I had to redo my second script because I forgot that the files end in <code>.fastq.gz</code> (not just <code>.fastq</code>). My original <code>mv</code> and for-loop patterns didn’t match anything, which is why nothing ran.</li>
+  <li>My first for-loop glob was wrong. I wrote <code>./data/raw/R1.fastq.gz</code> instead of <code>./data/raw/*_R1_*.fastq.gz</code>, so the loop didn’t iterate over any files.</li>
+  <li>Some other things that I was having trouble with was remembering <code>chmod +x</code>, putting <code>fastp</code> on my <code>$PATH</code>, and being careful with output filenames so I didn’t double-append <code>.trimmed</code>.</li>
+</ul>
+
+<h3>New things I learned</h3>
+<ul>
+  <li>How to use Bash parameter expansion to derive paired file names (swap <code>_R1_</code> → <code>_R2_</code>) and to insert <code>.trimmed</code> before the extension.</li>
+  <li>Why we use <code>set -euo pipefail</code> to fail fast and catch unset variables early.</li>
+  <li>How to grab a binary with <code>wget</code>, make it executable, add it to <code>~/.bashrc</code>, and confirm with <code>fastp -v</code>.</li>
+  <li>That I can send fastp’s JSON/HTML reports to <code>/dev/null</code> and capture human-readable logs per sample in <code>./log/</code>.</li>
+</ul>
+
+<h3>Why split this into two scripts and then call them from a single pipeline?</h3>
+<p>Separating the work made it cleaner and easier to debug. <code>01_download_data.sh</code> is only about getting the data into the right place. <code>02_run_fastp.sh</code> is only about processing one sample file correctly. Once each piece is working, the top-level <code>pipeline.sh</code> orchestrated the order: download → loop over all forward reads → run the per-sample fastp job. That separation is good because it let me test smaller pieces and like break things down, go back and fix the file-extension mistake without worrying too much, and then rerun everything automatically.</p>
+
+<h3>Pros and cons of this approach</h3>
+<p><strong>Pros</strong></p>
+<ul>
+  <li>Reproducible: I can delete <code>./data/raw/</code> and rerun the whole thing with one command.</li>
+  <li>Debuggable: each script has a single job; failures are way easier to pick apart.</li>
+  <li>Reusable: I can reuse <code>02_run_fastp.sh</code> on any new sample file without touching the pipeline.</li>
+  <li>Loggable: per-sample stdout/stderr makes it simple to audit runs later.</li>
+</ul>
+<p><strong>Cons</strong></p>
+<ul>
+  <li>With <code>set -euo pipefail</code>, one failure stops the whole pipeline (good for correctness, but bad if you wanted partial results).</li>
+<li> I think the pipeline can breaks easily if file names or folders change like everything is hard set (so I think patterns must match?).</li>
+
+
+<p>Overall, splitting the work into focused scripts and then chaining them together with a simple pipeline made it much easier for me to spot and fix mistakes (like the file-extension/glob issue) and to confidently re-run the entire assignment end-to-end. Wait also almost forgot I learned how
+to effectively format/style this README.md file to read nicely with brushing
+up on HTML?</p>
