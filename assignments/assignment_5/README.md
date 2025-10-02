@@ -37,12 +37,12 @@ mv *.fastq.gz ./data/raw/
 rm -f fastq_examples.tar
 </code></pre>
 
-<p><strong>Make it executable &amp; run</strong></p>
+<h3>Make it executable &amp; run</h3>
 <pre><code>chmod +x ./scripts/01_download_data.sh
 ./scripts/01_download_data.sh
 </code></pre>
 
-<p><strong>Quick check</strong></p>
+<h3>Quick check</h3>
 <pre><code>ls -l ./data/raw | head
 </code></pre>
 
