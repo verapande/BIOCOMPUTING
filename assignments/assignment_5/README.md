@@ -283,4 +283,3 @@ I then re-ran the full pipeline with:
 \`\`\`bash
 ./pipeline.sh
 \`\`\`
-EOF
