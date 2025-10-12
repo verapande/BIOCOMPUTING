@@ -1,0 +1,9 @@
+data/
+log/
+*.fastq.gz
+*.tar
+*.zip
+*.json
+*.html
+tmp_backup/
+assignments/tmp_backup/
