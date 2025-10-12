@@ -260,10 +260,27 @@ up on HTML?</p>
 <br>
 <br>
 <br>
-After receiving feedback on this assignment that my pipeline.sh script was located inside the scripts/
-folder and therefore calling the other scripts that I made with incorrect relative paths '(./scripts/01_....sh'), and that my scripts also were not handling creating folders for 'data/{raw, trimmed'}, 
-I made updates to address my accidental mistakes. I moved pipeline.sh from the scripts/ folder to the main assignment directory
-('assignment_5/'). I updated my scripts to use correct path to resolve correctly from the root. I made
-sure the directories were created using 'mkdir -p data/raw' and 'mkdir-p data/trimmed'. To test if my
-pipeline script was working properly now I emptied the existing files in data and logs using rm
-commands and then re-ran the full pipeline.
+After receiving feedback on this assignment that my `pipeline.sh` script was located inside the `scripts/` folder and therefore calling the other scripts that I made with incorrect relative paths (`./scripts/01_....sh`), and that my scripts also were not handling creating folders for `data/{raw, trimmed}`, I made updates to address my accidental mistakes.
+
+I moved `pipeline.sh` from the `scripts/` folder to the main assignment directory (`assignment_5/`). I updated my scripts to use the correct paths so they resolve properly from the root.
+
+I made sure the directories were created using the following commands:
+
+\`\`\`bash
+mkdir -p data/raw
+mkdir -p data/trimmed
+\`\`\`
+
+To test if my pipeline script was working properly, I emptied the existing files in `data` and `log` using the following commands:
+
+\`\`\`bash
+rm -rf data/*
+rm -rf log/*
+\`\`\`
+
+I then re-ran the full pipeline with:
+
+\`\`\`bash
+./pipeline.sh
+\`\`\`
+EOF
