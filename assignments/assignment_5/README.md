@@ -278,8 +278,4 @@ rm -rf data/*
 rm -rf log/*
 \`\`\`
 
-I then re-ran the full pipeline with:
-
-\`\`\`bash
-./pipeline.sh
-\`\`\`
+I then re-ran the full pipeline.
