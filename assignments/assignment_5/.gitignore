@@ -1,0 +1,22 @@
+# Ignore data and log directories
+data/
+log/
+
+# Ignore temporary or backup files
+*.tar
+*.gz
+data/
+log/
+*.fastq.gz
+*.tar
+*.html
+*.json
+data/
+log/
+*.fastq.gz
+*.tar
+data/
+log/
+*.fastq.gz
+*.tar
+tmp_backup/

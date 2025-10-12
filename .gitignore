@@ -1,9 +1,23 @@
+# Ignore all large and temporary folders
 data/
 log/
-*.fastq.gz
-*.tar
-*.zip
-*.json
-*.html
 tmp_backup/
 assignments/tmp_backup/
+
+# Ignore large file types
+*.fastq.gz
+*.fna
+*.fasta
+*.fa
+*.gff
+*.gz
+*.tar
+*.zip
+*.bam
+*.sam
+*.json
+*.html
+
+# Keep scripts, code, and READMEs
+!*.sh
+!*.md
