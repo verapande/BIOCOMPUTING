@@ -6,12 +6,14 @@ FWD_IN="$1"
 # derive reverse input file name by swapping _R1_ for _R2_
 REV_IN="${FWD_IN/_R1_/_R2_}"
 
-# we have to make the output names by inserting ".trimmed" before the extension
-FWD_OUT=${FWD_IN/%.fastq.gz/.trimmed.fastq.gz}
-FWD_OUT=${FWD_OUT/%.fastq/.trimmed.fastq}
+mkdir -p data/trimmed
 
-REV_OUT=${REV_IN/%.fastq.gz/.trimmed.fastq.gz}
-REV_OUT=${REV_OUT/%.fastq/.trimmed.fastq}
+# we have to make the output names by inserting ".trimmed" before the extension
+FWD_OUT="${FWD_IN/.fastq.gz/.trimmed.fastq.gz}"
+FWD_OUT="${FWD_OUT/data\/raw/data\/trimmed}"
+
+REV_OUT="${REV_IN/.fastq.gz/.trimmed.fastq.gz}"
+REV_OUT="${REV_OUT/data\/raw/data\/trimmed}"
 
 # we then have to show any log file names too
 fname=${FWD_IN##*/}          # strips the path
