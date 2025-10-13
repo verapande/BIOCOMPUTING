@@ -1,0 +1,9 @@
+data/
+assemblies/
+*.fastq
+*.fastq.gz
+*.fasta
+*.fa
+*.bam
+*.sam
+*.gv
