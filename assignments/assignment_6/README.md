@@ -28,7 +28,8 @@ assignment_6/
 │   └── assembly_local/           # keeps local_assembly.fasta + local_flye.log
 ├── pipeline.sh                   # orchestrates everything and tails logs
 └── flye-env.yml                  # exported environment (auto-created)
-How to run this assignment (one command)
+## How to run this assignment (one command)
+
 From inside assignment_6/ I run:
 
 
@@ -40,7 +41,8 @@ If I want to prove reproducibility, I delete everything except scripts/ and re-r
 
 rm -rf assemblies data flye-env.yml
 bash pipeline.sh
-What I actually did, step by step (with file locations)
+## What I actually did, step by step (with file locations)
+
 Task 1 — Set up the assignment_6/ directory
 I created the structure once on the cluster:
 
@@ -101,7 +103,8 @@ To simulate grading, I removed assemblies/, data/, and flye-env.yml and ran the 
 
 rm -rf assemblies data flye-env.yml
 bash pipeline.sh
-What the pipeline will produce
+## What the pipeline will produce
+
 After a successful run, I expect exactly two files per method:
 
 assemblies/assembly_conda/conda_assembly.fasta and conda_flye.log
@@ -112,18 +115,16 @@ assemblies/assembly_local/local_assembly.fasta and local_flye.log
 
 All other intermediate Flye files are removed to keep the repository tidy.
 
-What I learned while debugging (principles + simple fixes)
-Data paths first. I had to fix ./data to data/*.fastq* so an exact filename isn’t required.
 
-Use --nano-hq for modern ONT. Switching from --nano-raw to --nano-hq resolved runs that produced no assembly.
+## What I learned while debugging:
 
-Conda needs the right channels and private caches. Flye is on bioconda, so I must add -c bioconda -c conda-forge. I also set CONDA_PKGS_DIRS and CONDA_ENVS_PATH to $HOME to avoid shared lockfile errors.
+- **Data paths first.** I had to fix `./data` to `data/*.fastq*` so an exact filename isn’t required.
+- **Use `--nano-hq` for modern ONT.** Switching from `--nano-raw` resolved runs that produced no assembly.
+- **Conda channels + private caches.** Flye is on `bioconda`; I added `-c bioconda -c conda-forge` and set `CONDA_PKGS_DIRS` and `CONDA_ENVS_PATH` to `$HOME` to avoid lockfile errors.
+- **Module names are case-sensitive.** On bora the module is `Flye/gcc-11.4.1/2.9.6`.
+- **Be tolerant to missing outputs.** If `assembly.fasta` is absent, scripts don’t crash; they point me to the log.
+- **Runtime reality.** First-time conda solves, downloads, `make`, and shared filesystem load made my runs take longer than “~1 min.” Reruns are faster once the env and build exist.
 
-Modules can be case-sensitive and include compiler strings. On bora, the correct module is Flye/gcc-11.4.1/2.9.6 (capital F, and a compiler/version path).
-
-Keep things still running even if errors do happen. If assembly.fasta is missing, my scripts don’t crash; they point me to the log so I can see exactly what happened.
-
-In my terminal, the programs took much longer than 1 minute to run and I was so confused and it was so frustrating to wait. I am not sure if I am doing something inefficient here and/or just not approaching this assignment the correct way. On HPCs, first-time Conda environment solves, package/reads downloads, local make builds, and shared filesystem load can all add noticeable time. After the first time, reruns are faster because the environment and build already exist.
 
 Reflection
 Challenges. I got so overwhelmed and scared while troubleshooting across the three environments. At one point I wiped my repository to almost nothing and had to rebuild it just so to push a single README.md file. I had no idea what was going on; I literally cried. I even created a second branch and then removed it to keep working on main.
@@ -134,7 +135,8 @@ Thoughts on the three methods. I prefer Conda once channels are correct and the 
 
 What I’ll do first next time. I will start with the Conda route because it’s portable and easy to document, then try the module if present, and finally use a local build if I need a fixed version or if I’m on a system without modules. I’ll also commit earlier and more often, and I’ll test the pipeline from a clean slate before I push.
 
-Reproducibility check (what a grader can do quickly)
+## Reproducibility check (what a grader can do quickly)
+
 A grader can SSH into bora, enter this folder, delete outputs and the env file, and run the pipeline:
 
 
