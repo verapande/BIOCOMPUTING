@@ -1,9 +1,12 @@
-data/
+# large / generated
 assemblies/
+data/
+envs/
 *.fastq
 *.fastq.gz
 *.fasta
 *.fa
 *.bam
 *.sam
-*.gv
+# local builds
+programs/
