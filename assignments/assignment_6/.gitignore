@@ -10,3 +10,10 @@ envs/
 *.sam
 # local builds
 programs/
+# --- assemblies policy: keep logs, ignore FASTA ---
+assemblies/**/*.fasta
+assemblies/**/*.fa
+assemblies/**/*.fna
+assemblies/**/*.fai
+!assemblies/**/*.log
+# -----------------------------------------------

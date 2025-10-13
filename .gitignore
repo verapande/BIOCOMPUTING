@@ -21,3 +21,9 @@ assignments/tmp_backup/
 # Keep scripts, code, and READMEs
 !*.sh
 !*.md
+# Keep logs, ignore FASTA for assignment_6 assemblies
+/assignments/assignment_6/assemblies/**/*.fasta
+/assignments/assignment_6/assemblies/**/*.fa
+/assignments/assignment_6/assemblies/**/*.fna
+/assignments/assignment_6/assemblies/**/*.fai
+!/assignments/assignment_6/assemblies/**/*.log
