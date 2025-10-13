@@ -1,3 +1,4 @@
+# Assignment 6 — Software & Environments
 
 This assignment assembled Oxford Nanopore (ONT) phage reads with a program called **Flye**. We had to use three different environments—**Conda**, an **HPC module**, and a **local manual build**—to practice paths, environments, and reproducibility. My goal was not just to “make it run once,” but to structure everything so I (or anyone else) can delete the outputs and recreate them cleanly with a single command later on.
 
