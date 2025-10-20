@@ -1,4 +1,4 @@
-<hr>**ASSIGNMENT 6**<hr>
+# **ASSIGNMENT 6**
 <br>
 The purpose of this assignment was to assemble Oxford Nanopore (ONT) phage reads using the program
 Flye. We had to use three different environments—Conda, an HPC module, and a
