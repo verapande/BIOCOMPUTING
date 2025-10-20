@@ -15,20 +15,20 @@ cluster, and moved into the project directory structure for this assignment with
 The folder structure:
 <br>
 assignment_6/
-├── data/                        # raw ONT reads (local only; not in Git)
-├── scripts/
-│   ├── 01_download_data.sh       # downloads reads to ./data
-│   ├── 02_flye_2.9.6_conda_install.sh  # creates env + exports flye-env.yml
-│   ├── flye_2.9.6_manual_build.sh      # builds Flye into ~/BIOCOMPUTING/programs/Flye
-│   ├── 03_run_flye_conda.sh            # runs Flye via Conda env (6 threads)
-│   ├── 03_run_flye_module.sh           # runs Flye via module (Flye/gcc-11.4.1/2.9.6)
-│   └── 03_run_flye_local.sh            # runs Flye via local manual build
-├── assemblies/
-│   ├── assembly_conda/      # conda_assembly.fasta + conda_flye.log
-│   ├── assembly_module/     # module_assembly.fasta + module_flye.log
-│   └── assembly_local/      # local_assembly.fasta + local_flye.log
-├── pipeline.sh               # orchestrates everything
-└── flye-env.yml              # exported environment (auto-created)
+    data/                 # raw ONT reads (local only; not in Git)
+    scripts/
+        01_download_data.sh           # downloads reads to ./data
+        02_flye_2.9.6_conda_install.sh # creates env + exports flye-env.yml
+        flye_2.9.6_manual_build.sh     # builds Flye locally
+        03_run_flye_conda.sh           # runs Flye via Conda
+        03_run_flye_module.sh          # runs Flye via HPC module
+        03_run_flye_local.sh           # runs Flye via local manual build
+    assemblies/
+        assembly_conda/   # conda_assembly.fasta + conda_flye.log
+        assembly_module/  # module_assembly.fasta + module_flye.log
+        assembly_local/   # local_assembly.fasta + local_flye.log
+    pipeline.sh            # orchestrates everything
+    flye-env.yml           # exported environment (auto-created)
 <br>
 <br>
 <br>
