@@ -9,8 +9,8 @@ local manual build. My goal for this assignment is not just to make something ru
 To begin, I connected to the W&M VPN (GlobalProtect → portal gp.wm.edu), SSH’d to the bora
 cluster, and moved into the project directory structure for this assignment with the following command lines:
 <br>
-   ```ssh vpande@bora.sciclone.wm.edu```
-   ```cd ~/BIOCOMPUTING/assignments/assignment_6```
+   >ssh vpande@bora.sciclone.wm.edu
+   >cd ~/BIOCOMPUTING/assignments/assignment_6
 <br>
 The folder structure:
 <br>
@@ -35,7 +35,7 @@ assignment_6/
 <br>
 To run the assignment, from inside assignment_6/ I would run:
 <br>
-    ```bash pipeline.sh```
+    >bash pipeline.sh
 <br>
 The pipeline script would download the ONT reads, build a local Flye copy, create and
 document a Conda environment (flye-env + flye-env.yml), run Flye three times in the three different environments
@@ -44,26 +44,26 @@ document a Conda environment (flye-env + flye-env.yml), run Flye three times in 
 <br>
 To test the reproducibility of this assignment, I removed all of the files like it said we had to do and then run the pipeline script:
 <br>
-    ```rm -rf assemblies data flye-env.yml```
-    ```bash pipeline.sh```
+    >rm -rf assemblies data flye-env.yml
+    >bash pipeline.sh
 <br>
 <br>
 STEP-BY-STEP SUMMARY
 <br>
 Task 1 — Directory setup
-    mkdir -p assignment_6/{data,scripts,assemblies/{assembly_conda,assembly_local,assembly_module}}
-    cd assignment_6
+   > mkdir -p assignment_6/{data,scripts,assemblies/{assembly_conda,assembly_local,assembly_module}}
+    >cd assignment_6
 <br>
 Task 2 — Download ONT data
-    bash scripts/01_download_data.sh
+    >bash scripts/01_download_data.sh
 Result: data/SRR12012232_1.fastq.gz
 <br>
 Task 3 — Manual Flye build
-    bash scripts/flye_2.9.6_manual_build.sh
+    >bash scripts/flye_2.9.6_manual_build.sh
 Binary path: $HOME/BIOCOMPUTING/programs/Flye/bin
 <br>
 Task 4 — Conda environment
-    bash scripts/02_flye_2.9.6_conda_install.sh
+    >bash scripts/02_flye_2.9.6_conda_install.sh
 Result: flye-env exists; flye-env.yml documents dependencies
 <br>
 Task 5 — Flye command
