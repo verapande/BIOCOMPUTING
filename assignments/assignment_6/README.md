@@ -1,1 +1,126 @@
-<h1>Assignment 6 — Software &amp; Environments</h1> <p>This assignment assembled Oxford Nanopore (ONT) phage reads with a program called <strong>Flye</strong>. We had to use three different environments—<strong>Conda</strong>, an <strong>HPC module</strong>, and a <strong>local manual build</strong>—to practice paths, environments, and reproducibility. My goal was not just to “make it run once,” but to structure everything so I (or anyone else) can delete the outputs and recreate them cleanly with a single command later on.</p> <hr> <h2>Where to start and what’s here</h2> <p>I connected to the W&amp;M VPN (GlobalProtect → portal <code>gp.wm.edu</code>), SSH’d to the bora cluster, and moved into this project:</p> <pre><code>ssh vpande@bora.sciclone.wm.edu cd ~/BIOCOMPUTING/assignments/assignment_6 </code></pre> <p>I created a folder that contains a <code>data/</code> directory for raw reads (not pushed to Git), a <code>scripts/</code> directory with all the code, an <code>assemblies/</code> directory for the results from each environment, the exported Conda environment file <code>flye-env.yml</code>, and a single <code>pipeline.sh</code> that runs the entire workflow end-to-end and prints log summaries.</p> <pre><code>assignment_6/ ├── data/ # raw ONT reads (local only; not in Git) ├── scripts/ │ ├── 01_download_data.sh # downloads reads to ./data │ ├── 02_flye_2.9.6_conda_install.sh # creates env + exports flye-env.yml │ ├── flye_2.9.6_manual_build.sh # builds Flye into ~/BIOCOMPUTING/programs/Flye │ ├── 03_run_flye_conda.sh # runs Flye via Conda env (6 threads) │ ├── 03_run_flye_module.sh # runs Flye via module (Flye/gcc-11.4.1/2.9.6) │ └── 03_run_flye_local.sh # runs Flye via local manual build ├── assemblies/ │ ├── assembly_conda/ # keeps conda_assembly.fasta + conda_flye.log │ ├── assembly_module/ # keeps module_assembly.fasta + module_flye.log │ └── assembly_local/ # keeps local_assembly.fasta + local_flye.log ├── pipeline.sh # orchestrates everything and tails logs └── flye-env.yml # exported environment (auto-created) </code></pre> <h3>How to run this assignment (one command)</h3> <p>From inside <code>assignment_6/</code> I run:</p> <pre><code>bash pipeline.sh </code></pre> <p>The pipeline downloads the ONT reads into <code>./data</code>, builds a local Flye copy in <code>~/BIOCOMPUTING/programs/Flye</code>, creates and documents a Conda environment (<code>flye-env</code> + <code>flye-env.yml</code>), runs Flye three times (Conda, module, local) using high-quality ONT mode (<code>--nano-hq</code>), 6 threads, and an expected coliphage genome size of ~170 kb, and finally prints the last ten lines of each Flye log to my terminal. Each run cleans its output directory so only the assembly FASTA and the log remain.</p> <p>If I want to prove reproducibility, I delete everything except <code>scripts/</code> and re-run:</p> <pre><code>rm -rf assemblies data flye-env.yml bash pipeline.sh </code></pre> <hr> <h2>What I actually did, step by step (with file locations)</h2> <h3>Task 1 — Set up the assignment_6/ directory</h3> <p>I created the structure once on the cluster:</p> <pre><code>cd ~/BIOCOMPUTING/assignments mkdir -p assignment_6/{data,scripts,assemblies/{assembly_conda,assembly_local,assembly_module}} cd assignment_6 </code></pre> <h3>Task 2 — Download the raw ONT data</h3> <p>I wrote <code>scripts/01_download_data.sh</code> so the project can fetch reads for itself. It simply creates <code>data/</code>, changes into it, and downloads the read file. The file ends up in <code>assignment_6/data/</code>. Since my run scripts accept <code>data/*.fastq*</code>, I don’t need to rename it.</p> <pre><code>bash scripts/01_download_data.sh # Result: data/SRR12012232_1.fastq.gz </code></pre> <h3>Task 3 — Get Flye v2.9.6 via a local manual build</h3> <p>I wrote <code>scripts/flye_2.9.6_manual_build.sh</code> to clone the Flye repo, check out tag 2.9.6, and run <code>make</code>. It installs into <code>~/BIOCOMPUTING/programs/Flye</code>. My local run script adds both common bin locations to <code>PATH</code> so the binary is found.</p> <pre><code>bash scripts/flye_2.9.6_manual_build.sh # Binary lives at: $HOME/BIOCOMPUTING/programs/Flye/bin </code></pre> <h3>Task 4 — Get Flye v2.9.6 via Conda (with correct channels and home-based caches)</h3> <p>I learned that Flye packages are on bioconda, not just conda-forge, and that on shared HPCs I should store envs and caches in my home. My installer script sets:</p> <pre><code>CONDA_PKGS_DIRS=$HOME/.conda/pkgs CONDA_ENVS_PATH=$HOME/.conda/envs </code></pre> <p>Then it loads Miniforge, sources conda, and creates <code>flye-env</code> with <code>-c bioconda -c conda-forge</code>, falling back to Flye 2.9.5 if 2.9.6 isn’t available. It activates the env, prints <code>flye -v</code>, exports <code>flye-env.yml</code>, and deactivates.</p> <pre><code>bash scripts/02_flye_2.9.6_conda_install.sh # Result: flye-env exists; flye-env.yml documents exact deps </code></pre> <h3>Task 5 — Design the Flye command</h3> <p>For modern ONT data, I used <code>--nano-hq</code> rather than <code>--nano-raw</code> because the basecalling quality is high and Flye tunes parameters accordingly; this I learned from an internet search. I used <code>--threads 6</code> to be respectful on the login node, and <code>--genome-size 170k</code> because coliphage genomes are on that order. I allowed for multiple phage types by letting Flye assemble what’s present and then inspecting contigs via the log and the final FASTA. All three run scripts call the exact same Flye command, only the environment differs.</p> <h3>Task 6 — Run Flye three ways</h3> <p><strong>Conda environment:</strong> <code>scripts/03_run_flye_conda.sh</code> activates <code>flye-env</code> and runs Flye on <code>data/*.fastq*</code>, writing to <code>assemblies/assembly_conda/</code>. It cleans that directory so only <code>conda_assembly.fasta</code> and <code>conda_flye.log</code> remain.</p> <p><strong>HPC module:</strong> <code>scripts/03_run_flye_module.sh</code> loads the case-sensitive module <code>Flye/gcc-11.4.1/2.9.6</code> and runs Flye the same way, keeping <code>module_assembly.fasta</code> and <code>module_flye.log</code>.</p> <p><strong>Local build:</strong> <code>scripts/03_run_flye_local.sh</code> prepends <code>$HOME/BIOCOMPUTING/programs/Flye/bin</code> (and also <code>$HOME/programs/Flye/bin</code>) to <code>PATH</code> and runs Flye, keeping <code>local_assembly.fasta</code> and <code>local_flye.log</code>.</p> <p>Because the run can fail earlier (e.g., missing data), my move/cleanup lines are tolerant; if <code>assembly.fasta</code> wasn’t generated, the scripts won’t crash—they tell me to read the <code>.log</code> instead.</p> <hr> <h2>What the pipeline will produce</h2> <p>After a successful run, I expect exactly two files per method:</p> <p><code>assemblies/assembly_conda/conda_assembly.fasta</code> and <code>conda_flye.log</code></p> <p><code>assemblies/assembly_module/module_assembly.fasta</code> and <code>module_flye.log</code></p> <p><code>assemblies/assembly_local/local_assembly.fasta</code> and <code>local_flye.log</code></p> <p>All other intermediate Flye files are removed to keep the repository tidy.</p> <hr> <h2>What I learned while debugging</h2> <p><strong>Data paths first.</strong> I had to fix <code>./data</code> to <code>data/*.fastq*</code> so an exact filename isn’t required.</p> <p><strong>Use --nano-hq for modern ONT.</strong> Switching from <code>--nano-raw</code> resolved runs that produced no assembly.</p> <p><strong>Conda channels + private caches.</strong> Flye is on bioconda; I added <code>-c bioconda -c conda-forge</code> and set <code>CONDA_PKGS_DIRS</code> and <code>CONDA_ENVS_PATH</code> to <code>$HOME</code> to avoid lockfile errors.</p> <p><strong>Module names are case-sensitive.</strong> On bora the module is <code>Flye/gcc-11.4.1/2.9.6</code>.</p> <p><strong>Be tolerant to missing outputs.</strong> If <code>assembly.fasta</code> is absent, scripts don’t crash; they point me to the log.</p> <p><strong>Runtime reality.</strong> I know in the instructions it says that it should take ~1 minute to run each of these pipelines in terminal, but it was taking way too long for me. I had to wait so long—it was so frustrating.</p> <hr> <h2>Reflection</h2> <h3>Challenges</h3> <p>I got so overwhelmed and scared while troubleshooting across the three environments. At one point I wiped my repository to almost nothing and had to rebuild it just so to push a single <code>README.md</code> file. I had no idea what was going on; I literally cried. I even created a second branch and then removed it to keep working on main.</p> <h3>New things I learned</h3> <p>Reproducibility is about simple, consistent structure. If raw data lives in <code>data/</code>, scripts do all transformations, outputs are disposable, and the README explains everything, then I can delete and rebuild with confidence. I also learned that ONT input flags (<code>--nano-hq</code> vs <code>--nano-raw</code>) matter.</p> <h3>Thoughts on the three methods</h3> <p>The module path is the most convenient only when the exact module name exists; the case sensitivity and compiler path can be tricky. The local build is a reliable fallback anywhere, but it requires me to manage <code>$PATH</code> intentionally.</p> <h3>What I’ll do first next time</h3> <p>I will start with the Conda route because it’s portable and easy to document, then try the module if present, and finally use a local build if I need a fixed version or if I’m on a system without modules. I’ll also commit earlier and more often, and I’ll test the pipeline from a clean slate before I push.</p> <hr> <h2>Reproducibility check (what a grader can do quickly)</h2> <p>A grader can SSH into bora, enter this folder, delete outputs and the env file, and run the pipeline:</p> <pre><code>cd ~/BIOCOMPUTING/assignments/assignment_6 rm -rf assemblies data flye-env.yml bash pipeline.sh </code></pre> <p>Each method’s directory will contain exactly two files (the assembly FASTA and the log), and the last ten log lines will be printed to the terminal for quick inspection.</p> <hr> <h2>Notes on Git cleaning and organizing</h2> <p>I intentionally do not push data or large bio files. The repository tracks scripts, the exported environment file, and documentation. When I need to update structure or scripts, I use clear messages such as:</p> <pre><code>git add . git commit -m "A6: add conda/local/module run scripts and pipeline; export flye-env.yml" git push </code></pre>
+<hr>ASSIGNMENT 6<hr>
+<br>
+The purpose of this assignment was to assemble Oxford Nanopore (ONT) phage reads using the program
+Flye. We had to use three different environments—Conda, an HPC module, and a
+local manual build. My goal for this assignment is not just to make something run once but to structure everything so that I
+(or anyone else) can delete the outputs and recreate them cleanly with a single command later on.
+<br>
+<br>
+To begin, I connected to the W&M VPN (GlobalProtect → portal gp.wm.edu), SSH’d to the bora
+cluster, and moved into the project directory structure for this assignment with the following command lines:
+<br>
+    ssh vpande@bora.sciclone.wm.edu
+    cd ~/BIOCOMPUTING/assignments/assignment_6
+<br>
+The folder structure:
+<br>
+assignment_6/
+├── data/                        # raw ONT reads (local only; not in Git)
+├── scripts/
+│   ├── 01_download_data.sh       # downloads reads to ./data
+│   ├── 02_flye_2.9.6_conda_install.sh  # creates env + exports flye-env.yml
+│   ├── flye_2.9.6_manual_build.sh      # builds Flye into ~/BIOCOMPUTING/programs/Flye
+│   ├── 03_run_flye_conda.sh            # runs Flye via Conda env (6 threads)
+│   ├── 03_run_flye_module.sh           # runs Flye via module (Flye/gcc-11.4.1/2.9.6)
+│   └── 03_run_flye_local.sh            # runs Flye via local manual build
+├── assemblies/
+│   ├── assembly_conda/      # conda_assembly.fasta + conda_flye.log
+│   ├── assembly_module/     # module_assembly.fasta + module_flye.log
+│   └── assembly_local/      # local_assembly.fasta + local_flye.log
+├── pipeline.sh               # orchestrates everything
+└── flye-env.yml              # exported environment (auto-created)
+<br>
+<br>
+<br>
+<br>
+To run the assignment, from inside assignment_6/ I would run:
+<br>
+    bash pipeline.sh
+<br>
+The pipeline script would download the ONT reads, build a local Flye copy, create and
+document a Conda environment (flye-env + flye-env.yml), run Flye three times in the three different environments
+(Conda, module, local) using --nano-hq mode, 6 threads, and a genome size of
+~170 kb (datapoint that I searched up). It prints the last ten lines of each Flye log to the terminal.
+<br>
+To test the reproducibility of this assignment, I removed all of the files like it said we had to do and then run the pipeline script:
+<br>
+    rm -rf assemblies data flye-env.yml
+    bash pipeline.sh
+<br>
+<br>
+STEP-BY-STEP SUMMARY
+<br>
+Task 1 — Directory setup
+    mkdir -p assignment_6/{data,scripts,assemblies/{assembly_conda,assembly_local,assembly_module}}
+    cd assignment_6
+<br>
+Task 2 — Download ONT data
+    bash scripts/01_download_data.sh
+Result: data/SRR12012232_1.fastq.gz
+<br>
+Task 3 — Manual Flye build
+    bash scripts/flye_2.9.6_manual_build.sh
+Binary path: $HOME/BIOCOMPUTING/programs/Flye/bin
+<br>
+Task 4 — Conda environment
+    bash scripts/02_flye_2.9.6_conda_install.sh
+Result: flye-env exists; flye-env.yml documents dependencies
+<br>
+Task 5 — Flye command
+    Used --nano-hq for high-quality ONT, --threads 6, --genome-size 170k.
+<br>
+Task 6 — Run Flye three different ways in the different environments
+    Conda:  bash scripts/03_run_flye_conda.sh
+    Module: bash scripts/03_run_flye_module.sh
+    Local:  bash scripts/03_run_flye_local.sh
+<br>
+<br>
+EXPECTED OUTPUTS
+<br>
+Each environment is supposed to produce:
+    assemblies/assembly_conda/conda_assembly.fasta and conda_flye.log
+    assemblies/assembly_module/module_assembly.fasta and module_flye.log
+    assemblies/assembly_local/local_assembly.fasta and local_flye.log
+<br>
+<br>
+Errors that I came across and had to fix:
+<br>
+- Fixed data path from ./data to data/*.fastq*
+- Switched from --nano-raw to --nano-hq for better assemblies
+- Added conda channels: -c bioconda -c conda-forge
+- Set CONDA_PKGS_DIRS and CONDA_ENVS_PATH to $HOME
+- Noted module name is case-sensitive (Flye/gcc-11.4.1/2.9.6)
+- Scripts are tolerant to missing outputs (logs instead of crash)
+- Real runtime much longer than expected (several minutes per run)
+<br>
+<br>
+REFLECTION
+<br>
+Challenges:
+Before I really got into the depth of this assignment, I was relying on AI/LLM for assistance too much and I guess one of the things it told me somehow led me to wiping my entire repository on GitHub just to push a single file. I need to not rely on AI so much.
+It took a long long time but I finally was able to rebuild it and learned to commit more often than not and really take with a grain of salt what AI is telling me to do and to have it help and be a guidance on the side but not to completely dictate how I approach assignments.
+<br>
+Key lessons:
+Flags like --nano-hq
+matter for ONT data.
+<br>
+Thoughts on each method:
+I thought module was the easiest method to use; if it is already available that is great if not you might have to work around and ask for one to be established but not that bad.
+<br>
+<br>
+REPRODUCIBILITY CHECK FOR SOMEONE IF THEY WANTED TO GO IN AND RUN MY PIPELINE ON THEIR OWN
+<br>
+Someone could SSH into bora, go to this folder, delete any outputs, and rerun with the following command lines:
+<br>
+    cd ~/BIOCOMPUTING/assignments/assignment_6
+    rm -rf assemblies data flye-env.yml
+    bash pipeline.sh
+<br>
+Each assembly directory will have exactly two files: the FASTA and its log.
+<br>
+<br>
+NOTES ON GIT AND CLEANING
+<br>
+The repo excludes raw data and large files. It tracks scripts, environment
+files, and documentation only.
+<br>
