@@ -75,7 +75,7 @@ Task 6 — Run Flye three different ways in the different environments
     Local:  bash scripts/03_run_flye_local.sh
 <br>
 <br>
-<u>EXPECTED OUTPUTS</u>
+<ins>EXPECTED OUTPUTS</ins>
 <br>
 Each environment is supposed to produce:
     assemblies/assembly_conda/conda_assembly.fasta and conda_flye.log
@@ -94,7 +94,7 @@ Errors that I came across and had to fix:
 - Real runtime much longer than expected (several minutes per run)
 <br>
 <br>
-<u>REFLECTION</u>
+<ins>REFLECTION</ins>
 <br>
 Challenges:
 Before I really got into the depth of this assignment, I was relying on AI/LLM for assistance too much and I guess one of the things it told me somehow led me to wiping my entire repository on GitHub just to push a single file. I need to not rely on AI so much.
@@ -108,7 +108,7 @@ Thoughts on each method:
 I thought module was the easiest method to use; if it is already available that is great if not you might have to work around and ask for one to be established but not that bad.
 <br>
 <br>
-REPRODUCIBILITY CHECK FOR SOMEONE IF THEY WANTED TO GO IN AND RUN MY PIPELINE ON THEIR OWN
+<ins>REPRODUCIBILITY CHECK FOR SOMEONE IF THEY WANTED TO GO IN AND RUN MY PIPELINE ON THEIR OWN</ins>
 <br>
 Someone could SSH into bora, go to this folder, delete any outputs, and rerun with the following command lines:
 <br>
@@ -119,7 +119,7 @@ Someone could SSH into bora, go to this folder, delete any outputs, and rerun wi
 Each assembly directory will have exactly two files: the FASTA and its log.
 <br>
 <br>
-NOTES ON GIT AND CLEANING
+<ins>NOTES ON GIT AND CLEANING</ins>
 <br>
 The repo excludes raw data and large files. It tracks scripts, environment
 files, and documentation only.
