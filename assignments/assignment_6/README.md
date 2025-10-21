@@ -48,7 +48,7 @@ To test the reproducibility of this assignment, I removed all of the files like 
 	bash pipeline.sh
 <br>
 <br>
-STEP-BY-STEP SUMMARY
+<u>STEP-BY-STEP SUMMARY</u>
 <br>
 Task 1 — Directory setup
 	mkdir -p assignment_6/{data,scripts,assemblies/{assembly_conda,assembly_local,assembly_module}}
@@ -75,7 +75,7 @@ Task 6 — Run Flye three different ways in the different environments
     Local:  bash scripts/03_run_flye_local.sh
 <br>
 <br>
-EXPECTED OUTPUTS
+<u>EXPECTED OUTPUTS</u>
 <br>
 Each environment is supposed to produce:
     assemblies/assembly_conda/conda_assembly.fasta and conda_flye.log
@@ -94,7 +94,7 @@ Errors that I came across and had to fix:
 - Real runtime much longer than expected (several minutes per run)
 <br>
 <br>
-REFLECTION
+<u>REFLECTION</u>
 <br>
 Challenges:
 Before I really got into the depth of this assignment, I was relying on AI/LLM for assistance too much and I guess one of the things it told me somehow led me to wiping my entire repository on GitHub just to push a single file. I need to not rely on AI so much.
