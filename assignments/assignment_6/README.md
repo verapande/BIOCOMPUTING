@@ -1,8 +1,8 @@
 # **ASSIGNMENT 6**
 <br>
 The purpose of this assignment was to assemble Oxford Nanopore (ONT) phage reads using the program
-Flye. We had to use three different environments—<b>Conda<b>, <b>an HPC module<b>, and a
-<b>local manual build<b>. My goal for this assignment was not just to make something run once but to structure everything so that I
+<b>Flye</b>. We had to use three different environments—<b>Conda</b>, <b>an HPC module</b>, and a
+<b>local manual build</b>. My goal for this assignment was not just to make something run once but to structure everything so that I
 (or anyone else) can delete the outputs and recreate them cleanly with a single command later on.
 <br>
 <br>
