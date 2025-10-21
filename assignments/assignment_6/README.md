@@ -48,7 +48,7 @@ To test the reproducibility of this assignment, I removed all of the files like 
 	bash pipeline.sh
 <br>
 <br>
-<u>STEP-BY-STEP SUMMARY</u>
+<ins>STEP-BY-STEP SUMMARY</ins>
 <br>
 Task 1 — Directory setup
 	mkdir -p assignment_6/{data,scripts,assemblies/{assembly_conda,assembly_local,assembly_module}}
