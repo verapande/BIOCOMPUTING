@@ -124,3 +124,9 @@ Each assembly directory will have exactly two files: the FASTA and its log.
 The repo excludes raw data and large files. It tracks scripts, environment
 files, and documentation only.
 <br>
+<br>
+<br>
+<br>
+<br>
+Also note, forgot to add this in the appropriate section but to ensure I had installed the Flye program correctly
+I checked the version using flye -v command and got which I believe should be the correct version #2.9.6-b1802
