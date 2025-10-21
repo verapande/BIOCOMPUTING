@@ -1,5 +1,5 @@
 #!/bin/bash
-# 02_run_flye_conda.sh
+# 03_run_flye_conda.sh
 
 module load miniforge3
 source /sciclone/apps/miniforge3-24.9.2-0/etc/profile.d/conda.sh
