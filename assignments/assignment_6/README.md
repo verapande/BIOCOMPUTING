@@ -69,6 +69,7 @@ wget https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR120/032/SRR12012232/SRR12012232_1.f
 <br>
 echo "Download complete."
 <br>
+<br>
 Task 3 — Manual Flye build
 	bash scripts/flye_2.9.6_manual_build.sh
 Binary path: $HOME/BIOCOMPUTING/programs/Flye/bin
@@ -92,6 +93,7 @@ My script for Task 3 was the following:
 <br>make
 <br>
 <br>echo "Done. Binary at: $HOME/BIOCOMPUTING/programs/Flye/bin"
+<br>
 <br>
 Task 4 — Conda environment
 	bash scripts/02_flye_2.9.6_conda_install.sh
@@ -120,7 +122,7 @@ Task 6 — Run Flye three different ways in the different environments
 <br>
 <br>
 <br>
-For Task 6A My script was the following:
+<b>For Task 6A My script was the following:</b>
 <br>
 <br>#!/bin/bash
 <br># run Flye using conda environment
@@ -143,7 +145,8 @@ For Task 6A My script was the following:
 <br>conda deactivate
 <br>
 <br>
-For Task 6B My script was the following:
+<br>
+<b>For Task 6B My script was the following:</b>
 <br>#!/bin/bash
 <br># run Flye using module environment
 <br>
@@ -162,7 +165,8 @@ For Task 6B My script was the following:
 <br>rm -rf assemblies/_tmp_module
 <br>
 <br>
-For Task 6C My script was the following:
+<br>
+<b>For Task 6C My script was the following:</b>
 <br>#!/bin/bash
 <br># run Flye using local build
 <br>
