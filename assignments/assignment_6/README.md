@@ -58,13 +58,57 @@ Task 2 — Download ONT data
 	bash scripts/01_download_data.sh
 Result: data/SRR12012232_1.fastq.gz
 <br>
+My script for Task 2 was the following:
+<br>#!/bin/bash
+<br># Downloads the dataset for the E. coli phage into ./data directory
+<br>
+<br>mkdir -p data
+<br>cd data
+<br>
+wget https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR120/032/SRR12012232/SRR12012232_1.fastq.gz
+<br>
+echo "Download complete."
+<br>
 Task 3 — Manual Flye build
 	bash scripts/flye_2.9.6_manual_build.sh
 Binary path: $HOME/BIOCOMPUTING/programs/Flye/bin
 <br>
+My script for Task 3 was the following:
+<br>#!/bin/bash
+<br># Local build of Flye v2.9.6 (no sudo, no global install)
+<br># Builds into: ~/BIOCOMPUTING/programs/Flye
+<br>
+<br>mkdir -p ~/BIOCOMPUTING/programs
+<br>cd ~/BIOCOMPUTING/programs
+<br>
+<br># start fresh so clone never errors
+<br>rm -rf Flye
+<br>
+<br>echo "Cloning Flye..."
+<br>git clone https://github.com/fenderglass/Flye.git
+<br>
+<br>cd Flye
+<br>echo "Compiling..."
+<br>make
+<br>
+<br>echo "Done. Binary at: $HOME/BIOCOMPUTING/programs/Flye/bin"
+<br>
 Task 4 — Conda environment
 	bash scripts/02_flye_2.9.6_conda_install.sh
 Result: flye-env exists; flye-env.yml documents dependencies
+<br>
+My script for Task 4 was the following:
+<br>#!/bin/bash
+<br># flye_2.9.6_conda_install.sh
+
+<br>module load miniforge3
+<br>source /sciclone/apps/miniforge3-24.9.2-0/etc/profile.d/conda.sh
+<br>
+<br>mamba create -y -n flye-env -c bioconda -c conda-forge flye=2.9.6
+<br>conda activate flye-env
+<br>flye -v
+<br>conda env export --no-builds > flye-env.yml
+<br>conda deactivate
 <br>
 Task 5 — Flye command
     Used --nano-hq for high-quality ONT, --threads 6, --genome-size 170k.
@@ -73,6 +117,67 @@ Task 6 — Run Flye three different ways in the different environments
     Conda:  bash scripts/03_run_flye_conda.sh
     Module: bash scripts/03_run_flye_module.sh
     Local:  bash scripts/03_run_flye_local.sh
+<br>
+<br>
+<br>
+For Task 6A My script was the following:
+<br>
+<br>#!/bin/bash
+<br># run Flye using conda environment
+<br>
+<br>module load miniforge3
+<br>source /sciclone/apps/miniforge3-24.9.2-0/etc/profile.d/conda.sh
+<br>conda activate flye-env
+<br>
+<br>mkdir -p assemblies/_tmp_conda
+<br>rm -rf assemblies/_tmp_conda/*
+<br>
+<br>flye --nano-hq data/*.fastq* --out-dir assemblies/_tmp_conda --threads 6 --genome-size 170k
+<br>
+<br>mkdir -p assemblies/assembly_conda
+<br>mv assemblies/_tmp_conda/assembly.fasta assemblies/assembly_conda/conda_assembly.fasta
+<br>mv assemblies/_tmp_conda/flye.log assemblies/assembly_conda/conda_flye.log
+<br>
+<br>rm -rf assemblies/_tmp_conda
+<br>
+<br>conda deactivate
+<br>
+<br>
+For Task 6B My script was the following:
+<br>#!/bin/bash
+<br># run Flye using module environment
+<br>
+<br>module load Flye/gcc-11.4.1/2.9.6
+<br>flye -v
+<br>
+<br>mkdir -p assemblies/_tmp_module
+<br>rm -rf assemblies/_tmp_module/*
+<br>
+<br>flye --nano-hq data/*.fastq* --out-dir assemblies/_tmp_module --threads 6 --genome-size 170k
+<br>
+<br>mkdir -p assemblies/assembly_module
+<br>mv assemblies/_tmp_module/assembly.fasta assemblies/assembly_module/module_assembly.fasta
+<br>mv assemblies/_tmp_module/flye.log assemblies/assembly_module/module_flye.log
+<br>
+<br>rm -rf assemblies/_tmp_module
+<br>
+<br>
+For Task 6C My script was the following:
+<br>#!/bin/bash
+<br># run Flye using local build
+<br>
+<br>export PATH="$PATH:$HOME/BIOCOMPUTING/programs/Flye/bin"
+<br>
+<br>mkdir -p assemblies/_tmp_local
+<br>rm -rf assemblies/_tmp_local/*
+<br>
+<br>flye --nano-hq data/*.fastq* --out-dir assemblies/_tmp_local --threads 6 --genome-size 170k
+<br>
+<br>mkdir -p assemblies/assembly_local
+<br>mv assemblies/_tmp_local/assembly.fasta assemblies/assembly_local/local_assembly.fasta
+<br>mv assemblies/_tmp_local/flye.log assemblies/assembly_local/local_flye.log
+<br>
+<br>rm -rf assemblies/_tmp_local
 <br>
 <br>
 <ins>EXPECTED OUTPUTS</ins>
@@ -130,3 +235,5 @@ files, and documentation only.
 <br>
 Also note, forgot to add this in the appropriate section but to ensure I had installed the Flye program correctly
 I checked the version using flye -v command and got which I believe should be the correct version #2.9.6-b1802
+<br>
+Also see my final pipeline.sh in its respective folder here on git.
