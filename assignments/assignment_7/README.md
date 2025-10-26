@@ -33,3 +33,21 @@ chmod +x scripts/*
 cd scripts
 <br>
 ls -l
+<br>
+<br>
+<br>
+For Task 2, I searched the NCBI SRA and initially settled on using horse
+metagenomic data but any of the files were just too large so I ended up using
+sea otter metagenomic data. Here are the search details:
+"Enhydra lutris"[Organism] OR ("Enhydra lutris"[Organism] OR sea otter[All Fields]) AND shotgun[All Fields] AND ("biomol dna"[Properties] AND "strategy wgs"[Properties] AND "library layout paired"[Properties] AND "platform illumina"[Properties] AND "filetype fastq"[Properties])
+<br>
+All 10 that I had selected were around 1-3G and were southern sea otter fecal
+metagenome collected at Stanford University, California. I sent those results
+to the Run selector and then downloaded the meta data/csv file to my computer.
+I renamed the file to SraRunTable.csv and using FileZilla dragged it over to my
+data folder under assignment_7 on the HPC.
+<br>
+My script for Task 2 is as follows:
+"#nano 01_download_data"
+
+
