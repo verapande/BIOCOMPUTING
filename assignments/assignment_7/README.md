@@ -36,7 +36,7 @@ ls -l
 <br>
 <br>
 <br>
-##Task 2##
+##Task 2
 For Task 2, I searched the NCBI SRA and initially settled on using horse
 metagenomic data but any of the files were just too large so I ended up using
 sea otter metagenomic data. Here are the search details:
@@ -88,7 +88,7 @@ echo "Done."
 <br>
 <br>
 <br>
-##Task 3##
+##Task 3
 For Task 3, my script is as follows:
 <br>
 #!/bin/bash
@@ -122,7 +122,7 @@ done
 <br>
 <br>
 <br>
-##Task 4##
+##Task 4
 For Task 4, my script is as follows:
 <br>
 #!/bin/bash
@@ -155,7 +155,7 @@ echo "Done."
 <br>
 <br>
 <br>
-##Task 5##
+##Task 5
 For Task 5, my script is as follows:
 <br>
 #!/bin/bash
@@ -179,7 +179,7 @@ echo "Done."
 <br>
 <br>
 <br>
-##Task 6##
+##Task 6
 For Task 6, my slurm job/pipeline script is as follows:
 <br>
 #!/bin/bash
