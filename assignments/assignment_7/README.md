@@ -41,13 +41,50 @@ metagenomic data but any of the files were just too large so I ended up using
 sea otter metagenomic data. Here are the search details:
 "Enhydra lutris"[Organism] OR ("Enhydra lutris"[Organism] OR sea otter[All Fields]) AND shotgun[All Fields] AND ("biomol dna"[Properties] AND "strategy wgs"[Properties] AND "library layout paired"[Properties] AND "platform illumina"[Properties] AND "filetype fastq"[Properties])
 <br>
+<br>
 All 10 that I had selected were around 1-3G and were southern sea otter fecal
 metagenome collected at Stanford University, California. I sent those results
 to the Run selector and then downloaded the meta data/csv file to my computer.
 I renamed the file to SraRunTable.csv and using FileZilla dragged it over to my
 data folder under assignment_7 on the HPC.
 <br>
+<br>
 My script for Task 2 is as follows:
+<br>
 "#nano 01_download_data"
-
+<br>
+<br>
+#!/bin/bash
+<br>
+set -euo pipefail
+<br>
+<br>
+mkdir -p ./data/raw
+<br>
+mkdir -p ./data/dog_reference
+<br>
+<br>
+# download each run and skip the header
+<br>
+for ACC in $(cut -d',' -f1 data/SraRunTable_A7.csv | tail -n +2); do
+ <br>
+  echo "Downloading $ACC ..."
+  <br>
+  fasterq-dump -O data "$ACC"
+<br>
+done
+<br>
+<br>
+# 2) download dog reference genome and unzip the file
+<br>
+echo "Downloading dog reference genome..."
+<br>
+datasets download genome taxon "Canis familiaris" --reference --filename ref/dog.zip
+<br>
+unzip -o ref/dog.zip -d ref
+<br>
+echo "Done."
+<br>
+<br>
+<br>
 
