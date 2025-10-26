@@ -87,4 +87,33 @@ echo "Done."
 <br>
 <br>
 <br>
-
+For Task 3, my script is as follows:
+<br>
+#!/bin/bash
+<br>
+cd ~/BIOCOMPUTING/assignments/assignment_7
+<br>
+mkdir -p data/clean
+<br>
+<br>
+"# loop over forward reads"
+<br>
+for FWD in data/raw/*_1.fastq
+<br>
+do
+    REV=${FWD/_1.fastq/_2.fastq}
+    <br>
+    <br>
+    # move cleaned output names into ./data/clean/
+    <br>
+    OUTFWD=data/clean/$(basename "${FWD/.fastq/_clean.fastq}")
+    <br>
+    <br>
+    OUTREV=data/clean/$(basename "${REV/.fastq/_clean.fastq}")
+    <br>
+    <br>
+    # run fastp with default settings
+    <br>
+    fastp -i "$FWD" -I "$REV" -o "$OUTFWD" -O "$OUTREV"
+    <br>
+done
