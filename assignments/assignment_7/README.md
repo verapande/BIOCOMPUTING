@@ -172,3 +172,58 @@ for SAM in output/*_dog.sam; do
 done
 <br>
 echo "Done."
+<br>
+<br>
+<br>
+For Task 6, my slurm job/pipeline script is as follows:
+<br>
+#!/bin/bash
+<br>
+#SBATCH --job-name=Assignment_7
+<br>
+#SBATCH --nodes=1
+<br>
+#SBATCH --ntasks=1
+<br>
+#SBATCH --cpus-per-task=20
+<br>
+#SBATCH --time=0-12:00:00 # d-hh:mm:ss or just No. of minutes
+<br>
+#SBATCH --mem=120G # how much physical memory (all by default)
+<br>
+#SBATCH --mail-type=FAIL,BEGIN,END # when to email you
+<br>
+#SBATCH --mail-user=vpande@wm.edu # who to email
+<br>
+#SBATCH -o JOBNAME_%j.out #STDOUT to file (%j is jobID)
+<br>
+#SBATCH -e JOBNAME_%j.err #STDERR to file (%j is jobID)
+<br>
+set -euo pipefail
+<br>
+<br>
+#make a variable called root
+<br>
+root=/sciclone/home/vpande/BIOCOMPUTING/assignments/assignment_7
+<br>
+<br>
+export PATH=$PATH:$HOME/BIOCOMPUTING/programs/sratoolkit.3.2.1-ubuntu64/bin
+<br>
+export PATH=$HOME/BIOCOMPUTING/programs/bbmap:$PATH
+<br>
+export PATH=$HOME/BIOCOMPUTING/programs/datasets:$PATH
+<br>
+export PATH=$HOME/BIOCOMPUTING/programs/samtools-1.20:$PATH
+<br>
+export PATH=$HOME/BIOCOMPUTING/programs:$PATH
+<br>
+<br>
+bash "$root/scripts/01_download_data.sh"
+<br>
+bash "$root/scripts/02_clean_reads.sh"
+<br>
+bash "$root/scripts/02_map_reads.sh"
+<br>
+bash "$root/scripts/03_extract_hits.sh"
+<br>
+echo "Done."
