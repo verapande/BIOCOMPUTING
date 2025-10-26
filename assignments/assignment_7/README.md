@@ -128,7 +128,7 @@ REF=$(find ref -name "*.fna" | head -n 1)
 <br>
 mkdir -p output
 <br>
-# I think I already did this though when setting up structure?
+#I think I already did this though when setting up structure?
 <br>
 <br>
 #loop over forward reads; build the reverse and output names
