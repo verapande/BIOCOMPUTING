@@ -75,7 +75,7 @@ for ACC in $(cut -d',' -f1 data/SraRunTable_A7.csv | tail -n +2); do
 done
 <br>
 <br>
-# 2) download dog reference genome and unzip the file
+"# 2) download dog reference genome and unzip the file"
 <br>
 echo "Downloading dog reference genome..."
 <br>
