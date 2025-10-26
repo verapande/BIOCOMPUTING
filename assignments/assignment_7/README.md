@@ -10,6 +10,7 @@ reproducible computational biological work.
 <br>
 <br>
 <br>
+---
 To begin, I connected to the (GlobalProtect → portal gp.wm.edu), SSH’d into
 the bora cluster, and then navigated to my assignments directory and replicated
 the referenced final structure shown on the assignment_07 instructions document.
@@ -36,6 +37,7 @@ ls -l
 <br>
 <br>
 <br>
+---
 For Task 2, I searched the NCBI SRA and initially settled on using horse
 metagenomic data but any of the files were just too large so I ended up using
 sea otter metagenomic data. Here are the search details:
@@ -87,6 +89,7 @@ echo "Done."
 <br>
 <br>
 <br>
+---
 For Task 3, my script is as follows:
 <br>
 #!/bin/bash
@@ -120,6 +123,7 @@ done
 <br>
 <br>
 <br>
+---
 For Task 4, my script is as follows:
 <br>
 #!/bin/bash
@@ -152,6 +156,7 @@ echo "Done."
 <br>
 <br>
 <br>
+---
 For Task 5, my script is as follows:
 <br>
 #!/bin/bash
@@ -175,6 +180,7 @@ echo "Done."
 <br>
 <br>
 <br>
+---
 For Task 6, my slurm job/pipeline script is as follows:
 <br>
 #!/bin/bash
