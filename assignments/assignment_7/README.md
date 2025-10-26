@@ -64,7 +64,7 @@ mkdir -p ./data/raw
 mkdir -p ./data/dog_reference
 <br>
 <br>
-# download each run and skip the header
+# 1) download each run and skip the header
 <br>
 for ACC in $(cut -d',' -f1 data/SraRunTable_A7.csv | tail -n +2); do
  <br>
