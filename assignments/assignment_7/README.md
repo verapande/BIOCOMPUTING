@@ -149,3 +149,26 @@ for FWD in data/*.fastq; do
 done
 <br>
 echo "Done."
+<br>
+<br>
+<br>
+For Task 5, my script is as follows:
+<br>
+#!/bin/bash
+<br>
+mkdir -p output
+<br>
+<br>
+for SAM in output/*_dog.sam; do
+        <br>	
+	BASE=$(basename "$SAM" .sam)
+        <br>      
+	OUT="output/${BASE}_mapped.sam"
+        <br>
+	echo "Extracting mapped reads from $SAM..."
+        <br>
+	samtools view -F 4 "$SAM" > "$OUT"
+<br>
+done
+<br>
+echo "Done."
