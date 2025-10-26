@@ -117,3 +117,35 @@ do
     fastp -i "$FWD" -I "$REV" -o "$OUTFWD" -O "$OUTREV"
     <br>
 done
+<br>
+<br>
+<br>
+For Task 4, my script is as follows:
+<br>
+#!/bin/bash
+<br>
+REF=$(find ref -name "*.fna" | head -n 1)
+<br>
+mkdir -p output
+<br>
+# I think I already did this though when setting up structure?
+<br>
+<br>
+#loop over forward reads; build the reverse and output names
+<br>
+for FWD in data/*.fastq; do
+<br>
+	REV=${FWD/_1.fastq/_2.fastq}
+        <br>
+	BASE=$(basename "$FWD" "_1.fastq")
+        <br>
+	OUTSAM="output/${BASE}_dog.sam"
+        <br>
+        <br>
+        echo "Mapping $BASE ..."
+        <br>
+	bbmap.sh ref="$REF" in1="$FWD" in2="$REV" out="$OUTSAM" minid=0.95
+<br>
+done
+<br>
+echo "Done."
