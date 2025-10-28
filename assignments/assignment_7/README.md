@@ -276,6 +276,16 @@ do
 done
 <br>
 <br>
+The script basically starts by printing a header row of the table with the column names:
+“Sample,” “QC_Reads,” and “Dog_Mapped_Reads.” Then the script loops through each cleaned FASTQ file in the data directory.
+For each file, it extracts the sample name from the filename.Next, you are counting the number of reads that passed quality control
+by counting the FASTQ header lines in the file. Then you are checking for a file that contains the IDs of reads
+that ended up being mapped to dog DNA. If the file exists, you are counting how many IDs are listed.
+If the file does not exist, it the count is set to zero. Finally, you are printing a row of output for each sample, including
+the sample name, the QC read count,
+and the number of dog-mapped reads.
+<br>
+<br>
 Here's what the table looked like:
 
 | Sample      | QC Reads | Dog-Mapped Reads | Approx % Dog Contamination |
