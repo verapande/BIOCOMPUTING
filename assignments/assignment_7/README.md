@@ -257,11 +257,11 @@ do
   S=$(basename "$f" _1_clean.fastq)
   <br>
   <br>
-  # QC reads: count FASTQ headers in R1
+ "# QC reads: count FASTQ headers in R1"
   QC=$(grep -c "^@" "$f")
   <br>
   <br>
-  # mapped reads: count names from the ids file made by extract step
+  "# mapped reads: count names from the ids file made by extract step"
    <br>
    MAP=0
    <br>
@@ -277,6 +277,7 @@ done
 <br>
 <br>
 Here's what the table looked like:
+
 | Sample      | QC Reads | Dog-Mapped Reads | Approx % Dog Contamination |
 |-------------|----------|-----------------|----------------------------|
 | SRR14719072 | 10.8M    | 204k            | ~1.9%                      |
@@ -289,6 +290,7 @@ Here's what the table looked like:
 | SRR14722437 | 8.4M     | 2.24M           | ~26.5%                     |
 | SRR14722438 | 9.1M     | 2.1M            | ~23%                       |
 | SRR14789347 | 13.2M    | 4.99M           | ~37.8%                     |
+
 <br>
 That's really crazy that virtually all of these samples are contaminated
 with dog DNA!
