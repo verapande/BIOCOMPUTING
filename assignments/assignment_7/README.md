@@ -244,7 +244,7 @@ with dog reads. The script is as follows:
 <br>
 #!/bin/bash
 <br>
-# prints: Sample  QC_Reads  Dog_Mapped_Reads
+"# prints: Sample  QC_Reads  Dog_Mapped_Reads"
 <br>
 <br>
 echo -e "Sample\tQC_Reads\tDog_Mapped_Reads"
@@ -277,17 +277,18 @@ done
 <br>
 <br>
 Here's what the table looked like:
-sample	          QC   mapped  approx % dog contamination
-SRR14719072	10.8M	204k	~1.9%
-SRR14719074	12.7M	601k	~4.7%
-SRR14719080	10.1M	27k	~0.27%
-SRR14722429	8.7M	322k	~3.7%
-SRR14722431	14.0M	15k	~0.11%
-SRR14722433	9.9M	878k	~8.8%
-SRR14722436	7.7M	108k	~1.4%
-SRR14722437	8.4M	2.24M	~26.5% 
-SRR14722438	9.1M	2.1M	~23% 
-SRR14789347	13.2M	4.99M	~37.8% 
+| Sample      | QC Reads | Dog-Mapped Reads | Approx % Dog Contamination |
+|-------------|----------|-----------------|----------------------------|
+| SRR14719072 | 10.8M    | 204k            | ~1.9%                      |
+| SRR14719074 | 12.7M    | 601k            | ~4.7%                      |
+| SRR14719080 | 10.1M    | 27k             | ~0.27%                     |
+| SRR14722429 | 8.7M     | 322k            | ~3.7%                      |
+| SRR14722431 | 14.0M    | 15k             | ~0.11%                     |
+| SRR14722433 | 9.9M     | 878k            | ~8.8%                      |
+| SRR14722436 | 7.7M     | 108k            | ~1.4%                      |
+| SRR14722437 | 8.4M     | 2.24M           | ~26.5%                     |
+| SRR14722438 | 9.1M     | 2.1M            | ~23%                       |
+| SRR14789347 | 13.2M    | 4.99M           | ~37.8%                     |
 <br>
 That's really crazy that virtually all of these samples are contaminated
 with dog DNA!
