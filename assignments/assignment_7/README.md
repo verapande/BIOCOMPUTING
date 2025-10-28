@@ -235,6 +235,7 @@ echo "Done."
 <br>
 <br>
 <br>
+## Task 8
 For Task 8, I wrote an extra script that shows each of my samples, the number
 of QC reads, and the number of reads that ended up mapping to the dog genome, and
 to really understand the extent of contamination the percent of reads contaminated
