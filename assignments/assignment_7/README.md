@@ -351,7 +351,7 @@ look like... I really hope that I don't get too many points off
           <li>02_clean_reads.sh</li>
           <li>02_map_reads.sh</li>
           <li>03_extract_hits.sh</li>
-          <li>04_summ_
+          <li>04_summ_</li>
 <br>
 <br>
 Ok now for this assignment, I built a modular, reproducible pipeline on the HPC to test for dog-DNA contamination in ten Illumina shotgun metagenome samples (I chose sea-otter fecal metagenomic data). I used fasterq-dump to take the raw paired reads, cleaned them with fastp (with the default settings), mapped the cleaned reads to the Canis familiaris reference genome with bbmap.sh at minid=0.95, and extracted the mapped alignments using samtools view -F 4. I wrote small scripts for each step and ran them all together with a SLURM job so the entire workflow could be re-run end-to-end. My final summary script summarized per-sample QC reads, dog-mapped reads, and an approximate contamination percentage; several samples showed strikingly high levels of dog DNA (~26–38%), which is crazyyy. I was surprised.
