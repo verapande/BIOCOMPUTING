@@ -18,7 +18,7 @@ root=/sciclone/home/vpande/BIOCOMPUTING/assignments/assignment_7
 # ensure log/output dir exists
 mkdir -p "$root/output"
 
-# add programs to PATH (explicit versions + generic fallback + slurm bin)
+# add programs to PATH statements
 export PATH=$HOME/BIOCOMPUTING/programs/sratoolkit.3.2.1-ubuntu64/bin:$PATH
 export PATH=$HOME/BIOCOMPUTING/programs/bbmap:$PATH
 export PATH=$HOME/BIOCOMPUTING/programs/datasets:$PATH
@@ -29,7 +29,7 @@ export PATH=/usr/local/slurm-23.11.9/bin:$PATH
 # run from scripts/ so ../data ../ref ../output resolve correctly
 cd "$root/scripts"
 
-# run entire workflow in sequence — no checkpoints
+# run scripts
 bash ./01_download_data.sh
 bash ./02_clean_reads.sh
 bash ./02_map_reads.sh
