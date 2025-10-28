@@ -308,21 +308,47 @@ with dog DNA!
 <br>
 <br>
 ## Reflection
+<br>
 To start off, I am so sorry but this is what I had my final directory structure
 look like... I really hope that I don't get too many points off
 <br>
-📁 assignment_7/
- ├── assignment_7_pipeline.slurm
- ├── data/
- │   ├── raw/
- │   ├── clean/
- │   ├── dog_reference/
- │   └── SraRunTable_A7.csv
- ├── output/
- │   ├── hits/
- │   └── *.sam
- ├── scripts/
- ├── ref/
- ├── fastp.html
- ├── fastp.json
- └── README.md
+<ul>
+  <li>assignment_7/
+    <ul>
+      <li>assignment_7_pipeline.slurm</li>
+      <li>data/
+        <ul>
+          <li>raw/ (example: SRR14719072_1.fastq, +19 more)</li>
+          <li>clean/ (example: SRR14719072_1_clean.fastq, +19 more)</li>
+          <li>dog_reference/ (merged dog genome FASTA)</li>
+          <li>SraRunTable_A7.csv</li>
+        </ul>
+      </li>
+      <li>fastp.html</li>
+      <li>fastp.json</li>
+      <li>output/
+        <ul>
+          <li>hits/ (example: SRR14719072_mapped_ids.txt, +29 more)</li>
+          <li>*.sam (dog alignment results)</li>
+          <li>JOBNAME_230975.out</li>
+          <li>JOBNAME_230975.err</li>
+          <li>summary.tsv</li>
+        </ul>
+      </li>
+      <li>README.md</li>
+      <li>ref/
+        <ul>
+          <li>genome/1/ (chr1.chrom.gz +5 more)</li>
+          <li>index/1/ (index components)</li>
+          <li>ncbi_dataset/data/GCF_011100685.1/...genomic.fna</li>
+          <li>md5sum.txt</li>
+          <li>README.md</li>
+        </ul>
+      </li>
+      <li>scripts/
+        <ul>
+          <li>01_download_data.sh</li>
+          <li>02_clean_reads.sh</li>
+          <li>02_map_reads.sh</li>
+          <li>03_extract_hits.sh</li>
+          <li>04_summ_
