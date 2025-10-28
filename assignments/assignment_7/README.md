@@ -311,7 +311,7 @@ with dog DNA!
 To start off, I am so sorry but this is what I had my final directory structure
 look like... I really hope that I don't get too many points off
 <br>
-```bash
+```text
 assignment_7/
 ├── assignment_7_pipeline.slurm
 ├── data/
@@ -363,5 +363,5 @@ assignment_7/
     ├── 02_clean_reads.sh
     ├── 02_map_reads.sh
     ├── 03_extract_hits.sh
-    ├── 04_summary.sh
+    └── 04_summary.sh
 ```
