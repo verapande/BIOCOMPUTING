@@ -311,57 +311,18 @@ with dog DNA!
 To start off, I am so sorry but this is what I had my final directory structure
 look like... I really hope that I don't get too many points off
 <br>
-```text
-assignment_7/
-├── assignment_7_pipeline.slurm
-├── data/
-│   ├── raw/
-│   │   ├── SRR14719072_1.fastq
-│   │   └── ... (19 more files)
-│   ├── clean/
-│   │   ├── SRR14719072_1_clean.fastq
-│   │   └── ... (19 more files)
-│   ├── dog_reference/
-│   └── SraRunTable_A7.csv
-├── fastp.html
-├── fastp.json
-├── output/
-│   ├── hits/
-│   │   ├── SRR14719072_mapped_ids.txt
-│   │   └── ... (29 more files)
-│   ├── SRR14719072_dog.sam
-│   ├── SRR14719074_dog.sam
-│   ├── SRR14719080_dog.sam
-│   ├── SRR14722429_dog.sam
-│   ├── SRR14722431_dog.sam
-│   ├── SRR14722433_dog.sam
-│   ├── SRR14722436_dog.sam
-│   ├── SRR14722437_dog.sam
-│   ├── SRR14722438_dog.sam
-│   ├── SRR14789347_dog.sam
-│   ├── JOBNAME_230975.out
-│   ├── JOBNAME_230975.err
-│   └── summary.tsv
-├── README.md
-├── ref/
-│   ├── genome/
-│   │   └── 1/
-│   │       ├── chr1.chrom.gz
-│   │       └── ... (5 more chromosome/scaffold metadata files)
-│   ├── index/
-│   │   └── 1/
-│   │       ├── chr1-3_index_k13_c2_b1.block
-│   │       └── ... (3 more index components)
-│   ├── ncbi_dataset/
-│   │   └── data/
-│   │       └── GCF_011100685.1/
-│   │           └── GCF_011100685.1_UU_Cfam_GSD_1.0_genomic.fna
-│   ├── md5sum.txt
-│   └── README.md
-└── scripts/
-    ├── 01_download_data.sh
-    ├── 02_clean_reads.sh
-    ├── 02_map_reads.sh
-    ├── 03_extract_hits.sh
-    └── 04_summary.sh
-```
+📁 assignment_7/
+ ├── assignment_7_pipeline.slurm
+ ├── data/
+ │   ├── raw/
+ │   ├── clean/
+ │   ├── dog_reference/
+ │   └── SraRunTable_A7.csv
+ ├── output/
+ │   ├── hits/
+ │   └── *.sam
+ ├── scripts/
+ ├── ref/
+ ├── fastp.html
+ ├── fastp.json
+ └── README.md
