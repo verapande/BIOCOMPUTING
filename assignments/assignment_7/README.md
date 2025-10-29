@@ -286,7 +286,7 @@ the sample name, the QC read count,
 and the number of dog-mapped reads.
 <br>
 <br>
-Here's what the table looked like:
+Here's what the table looked like... I manually added Approx % Dog Contamination:
 
 | Sample      | QC Reads | Dog-Mapped Reads | Approx % Dog Contamination |
 |-------------|----------|-----------------|----------------------------|
