@@ -361,6 +361,7 @@ To use my pipeline, you would first need to connect to the Bora cluster and navi
 <br>
 <br>
 <br>
+## Reflection
 Ok now for this assignment, I built a modular, reproducible pipeline on the HPC to test for dog-DNA contamination in ten Illumina shotgun metagenome samples (I chose sea-otter fecal metagenomic data). I used fasterq-dump to take the raw paired reads, cleaned them with fastp (with the default settings), mapped the cleaned reads to the Canis familiaris reference genome with bbmap.sh at minid=0.95, and extracted the mapped alignments using samtools view -F 4. I wrote small scripts for each step and ran them all together with a SLURM job so the entire workflow could be re-run end-to-end. My final summary script summarized per-sample QC reads, dog-mapped reads, and an approximate contamination percentage; several samples showed strikingly high levels of dog DNA (~26–38%), which is crazyyy. I was surprised.
 
 My directory structure ended up being slightly different from the example in the assignment please see the beginning of my reflection I really hope that this is not bad — I kept a single data/ folder that includes raw/ and clean/, a separate ref/ folder for the dog genome, and an output/ folder where I direct all mapping results and SLURM logs. Ensuring that logs (.out/.err) also land inside output/ makes inspection and reproducibility simpler.
